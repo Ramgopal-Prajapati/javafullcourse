@@ -1,0 +1,2526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Java Zero to Hero — Deep Programming Course | Ramsir</title>
+<meta name="description" content="Complete Java programming course: foundations, OOP, DSA, patterns, collections, 100+ quiz, 50+ DSA problems, interview ready." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/lucide@latest"></script>
+<style>
+:root{
+  --bg:#05060a;
+  --bg-2:#0a0d18;
+  --surface:#0f1424;
+  --surface-2:#141a2e;
+  --border:rgba(120,160,255,0.12);
+  --border-strong:rgba(120,160,255,0.25);
+  --text:#e6ebff;
+  --muted:#8a92b2;
+  --primary:#7c5cff;
+  --primary-2:#22d3ee;
+  --accent:#f472b6;
+  --green:#34d399;
+  --yellow:#fbbf24;
+  --red:#fb7185;
+  --grad: linear-gradient(135deg,#7c5cff 0%, #22d3ee 50%, #34d399 100%);
+  --grad-2: linear-gradient(135deg,#f472b6,#7c5cff);
+  --shadow-glow: 0 0 60px rgba(124,92,255,.25);
+  --radius: 16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Space Grotesk',system-ui,sans-serif;
+  background: radial-gradient(1200px 600px at 10% -10%, rgba(124,92,255,.18), transparent 60%),
+              radial-gradient(900px 500px at 100% 0%, rgba(34,211,238,.15), transparent 60%),
+              var(--bg);
+  color:var(--text);
+  line-height:1.65;
+  overflow-x:hidden;
+}
+.container{max-width:1240px;margin:0 auto;padding:0 24px}
+a{color:var(--primary-2);text-decoration:none}
+
+/* ====== HEADER ====== */
+.nav{
+  position:sticky;top:0;z-index:100;
+  backdrop-filter:blur(14px);
+  background:rgba(5,6,10,.7);
+  border-bottom:1px solid var(--border);
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:20px}
+.logo-mark{
+  width:36px;height:36px;border-radius:10px;
+  background:var(--grad);
+  display:grid;place-items:center;color:#0b1020;font-family:'JetBrains Mono',monospace;font-weight:700;
+  box-shadow:var(--shadow-glow);
+}
+.nav-links{display:flex;gap:26px;align-items:center}
+.nav-links a{color:var(--muted);font-weight:500;font-size:15px;transition:.2s}
+.nav-links a:hover{color:var(--text)}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:11px 20px;border-radius:12px;font-weight:600;font-size:15px;
+  border:none;cursor:pointer;transition:.25s;font-family:inherit;
+}
+.btn-primary{background:var(--grad);color:#0b1020;box-shadow:var(--shadow-glow)}
+.btn-primary:hover{transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--text);border:1px solid var(--border-strong)}
+.btn-ghost:hover{background:var(--surface)}
+.menu-btn{display:none;background:none;border:none;color:var(--text);font-size:26px;cursor:pointer}
+
+/* ====== HERO ====== */
+.hero{padding:90px 0 80px;position:relative;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:center}
+.tag{
+  display:inline-flex;gap:8px;align-items:center;
+  padding:7px 14px;border-radius:100px;
+  background:rgba(124,92,255,.12);border:1px solid rgba(124,92,255,.3);
+  color:#cdb8ff;font-size:13px;font-weight:500;margin-bottom:22px;
+}
+.hero h1{
+  font-size:clamp(36px,5.5vw,64px);line-height:1.05;font-weight:700;letter-spacing:-1.5px;
+  margin-bottom:22px;
+}
+.hero h1 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.lead{font-size:18px;color:var(--muted);margin-bottom:32px;max-width:560px}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:42px}
+.stats{display:flex;gap:36px;flex-wrap:wrap}
+.stat-num{font-size:28px;font-weight:700;background:var(--grad);-webkit-background-clip:text;color:transparent}
+.stat-label{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+
+.hero-card{
+  position:relative;border-radius:24px;padding:24px;
+  background:linear-gradient(180deg,var(--surface) 0%,var(--surface-2) 100%);
+  border:1px solid var(--border-strong);
+  box-shadow:var(--shadow-glow);
+}
+.hero-code{font-family:'JetBrains Mono',monospace;font-size:14px;line-height:1.7;color:#cfd6ff}
+.hero-code .k{color:#c4a7ff}
+.hero-code .s{color:#86e1c1}
+.hero-code .c{color:#5b6b8a;font-style:italic}
+.hero-code .t{color:#7dd3fc}
+.terminal-bar{display:flex;gap:6px;margin-bottom:14px}
+.terminal-bar span{width:12px;height:12px;border-radius:50%}
+.terminal-bar .r{background:#fb7185}.terminal-bar .y{background:#fbbf24}.terminal-bar .g{background:#34d399}
+.float-icon{
+  position:absolute;width:60px;height:60px;border-radius:16px;display:grid;place-items:center;
+  background:var(--surface);border:1px solid var(--border-strong);
+  font-size:28px;
+  animation:float 4s ease-in-out infinite;
+}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.fi-1{top:-22px;right:-22px}
+.fi-2{bottom:-22px;left:-22px;animation-delay:1.5s}
+
+/* ====== SECTION ====== */
+.section{padding:80px 0;position:relative}
+.section-head{text-align:center;margin-bottom:50px}
+.section-head .tag{margin-bottom:14px}
+.section-head h2{font-size:clamp(28px,4vw,44px);font-weight:700;letter-spacing:-1px;margin-bottom:14px}
+.section-head h2 .grad{background:var(--grad);-webkit-background-clip:text;color:transparent}
+.section-head p{color:var(--muted);max-width:680px;margin:0 auto;font-size:17px}
+
+/* ====== CHAPTER GRID ====== */
+.ch-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+.ch-card{
+  background:linear-gradient(180deg,var(--surface),var(--surface-2));
+  border:1px solid var(--border);
+  border-radius:var(--radius);padding:24px;transition:.3s;cursor:pointer;
+  position:relative;overflow:hidden;
+}
+.ch-card::before{
+  content:"";position:absolute;inset:0;border-radius:inherit;
+  background:var(--grad);opacity:0;transition:.3s;z-index:-1;
+}
+.ch-card:hover{transform:translateY(-4px);border-color:var(--border-strong);box-shadow:var(--shadow-glow)}
+.ch-icon{
+  width:48px;height:48px;border-radius:12px;background:var(--grad);
+  display:grid;place-items:center;color:#0b1020;font-weight:700;
+  font-family:'JetBrains Mono',monospace;margin-bottom:14px;
+}
+.ch-card h3{font-size:20px;margin-bottom:10px}
+.ch-card ul{list-style:none;padding:0}
+.ch-card ul li{color:var(--muted);font-size:14px;padding:4px 0;display:flex;gap:8px;align-items:center}
+.ch-card ul li::before{content:"▸";color:var(--primary-2)}
+
+/* ====== TOPIC ====== */
+.topic{
+  background:linear-gradient(180deg,var(--surface),var(--surface-2));
+  border:1px solid var(--border);border-radius:var(--radius);
+  padding:28px;margin-bottom:24px;
+}
+.topic-title{
+  font-size:22px;margin-bottom:14px;display:flex;align-items:center;gap:10px;
+  border-bottom:1px solid var(--border);padding-bottom:12px;
+}
+.t-icon{color:var(--primary-2);font-family:'JetBrains Mono',monospace}
+.def,.usec{margin:8px 0;color:#cfd6ff;font-size:15px}
+.def b,.usec b{color:var(--primary-2)}
+
+/* ====== CODE ====== */
+.code-card{margin-top:16px;border-radius:12px;overflow:hidden;border:1px solid var(--border-strong);background:#070914}
+.code-head{display:flex;align-items:center;gap:8px;padding:10px 14px;background:#0c1024;border-bottom:1px solid var(--border)}
+.dot{width:11px;height:11px;border-radius:50%}
+.dot.r{background:#fb7185}.dot.y{background:#fbbf24}.dot.g{background:#34d399}
+.lang{margin-left:10px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted)}
+.copy-btn{margin-left:auto;background:transparent;border:1px solid var(--border-strong);color:var(--muted);padding:4px 12px;border-radius:8px;cursor:pointer;font-size:12px;font-family:inherit}
+.copy-btn:hover{color:var(--text);border-color:var(--primary-2)}
+pre.code{margin:0;padding:18px;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:13.5px;line-height:1.7;color:#dde6ff}
+pre.code code{color:inherit;font-family:inherit}
+.output{background:#040611;border-top:1px dashed var(--border-strong);padding:12px 18px}
+.out-label{font-size:11px;color:var(--green);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px;font-weight:600}
+.output pre{margin:0;font-family:'JetBrains Mono',monospace;font-size:13px;color:#86e1c1;white-space:pre-wrap}
+
+/* ====== TABLES ====== */
+table.tbl{width:100%;border-collapse:collapse;margin:14px 0}
+.tbl th,.tbl td{padding:10px 14px;text-align:left;border:1px solid var(--border)}
+.tbl th{background:#0c1024;color:var(--primary-2);font-weight:600}
+.tbl td{color:#cfd6ff;font-size:14px}
+.tbl tr:nth-child(even){background:rgba(255,255,255,0.015)}
+
+/* ====== QUIZ ====== */
+.quiz-wrap{max-width:780px;margin:0 auto}
+.quiz-card{
+  background:linear-gradient(180deg,var(--surface),var(--surface-2));
+  border:1px solid var(--border-strong);border-radius:20px;padding:30px;
+}
+.q-progress{height:6px;background:#0a0d18;border-radius:100px;overflow:hidden;margin-bottom:24px}
+.q-progress > div{height:100%;background:var(--grad);width:0;transition:.4s}
+.q-num{color:var(--muted);font-size:13px;margin-bottom:6px;letter-spacing:1px;text-transform:uppercase}
+.q-text{font-size:20px;font-weight:600;margin-bottom:22px}
+.q-opt{
+  display:block;width:100%;text-align:left;
+  background:#0a0d1c;border:1.5px solid var(--border);
+  padding:14px 18px;border-radius:12px;color:var(--text);
+  margin-bottom:10px;cursor:pointer;font-size:15px;font-family:inherit;transition:.2s;
+}
+.q-opt:hover{border-color:var(--primary-2)}
+.q-opt.correct{border-color:var(--green);background:rgba(52,211,153,.12)}
+.q-opt.wrong{border-color:var(--red);background:rgba(251,113,133,.12)}
+.q-actions{display:flex;justify-content:space-between;margin-top:18px;gap:10px;flex-wrap:wrap}
+.q-score{text-align:center;padding:14px;font-size:16px;color:var(--primary-2)}
+.q-result{text-align:center;padding:30px}
+.q-result .big{font-size:42px;font-weight:700;background:var(--grad);-webkit-background-clip:text;color:transparent}
+
+/* ====== TRAINER ====== */
+.trainer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+.trainer-card{
+  background:linear-gradient(180deg,var(--surface),var(--surface-2));
+  border:1px solid var(--border);border-radius:20px;padding:26px;text-align:center;transition:.3s;
+}
+.trainer-card:hover{transform:translateY(-4px);border-color:var(--primary)}
+.avatar{
+  width:90px;height:90px;border-radius:50%;background:var(--grad);
+  display:grid;place-items:center;color:#0b1020;font-size:34px;font-weight:700;
+  margin:0 auto 14px;font-family:'JetBrains Mono',monospace;
+}
+.trainer-card h4{font-size:18px;margin-bottom:4px}
+.trainer-card .role{color:var(--primary-2);font-size:13px;margin-bottom:10px}
+.trainer-card p{color:var(--muted);font-size:14px}
+
+/* ====== ONE-TO-ONE PRICING ====== */
+.price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+.price-card{
+  background:linear-gradient(180deg,var(--surface),var(--surface-2));
+  border:1px solid var(--border);border-radius:20px;padding:32px;position:relative;transition:.3s;
+}
+.price-card.popular{border-color:var(--primary);box-shadow:var(--shadow-glow)}
+.price-card .badge{
+  position:absolute;top:-12px;right:24px;background:var(--grad);color:#0b1020;
+  font-size:11px;font-weight:700;padding:4px 12px;border-radius:100px;letter-spacing:1px;
+}
+.price-card h3{font-size:20px;margin-bottom:6px}
+.price-card .price{font-size:38px;font-weight:700;margin:14px 0}
+.price-card .price small{font-size:14px;color:var(--muted);font-weight:400}
+.price-card ul{list-style:none;margin:18px 0}
+.price-card ul li{padding:6px 0;color:#cfd6ff;font-size:14px;display:flex;gap:8px;align-items:center}
+.price-card ul li::before{content:"✓";color:var(--green);font-weight:700}
+
+/* ====== CONTACT ====== */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.contact-info{display:flex;flex-direction:column;gap:14px}
+.info-item{display:flex;gap:12px;align-items:center;padding:14px;background:var(--surface);border:1px solid var(--border);border-radius:12px}
+.info-item .ico{width:42px;height:42px;border-radius:10px;background:var(--grad);display:grid;place-items:center;color:#0b1020;font-weight:700}
+.contact-form{background:var(--surface);border:1px solid var(--border-strong);border-radius:20px;padding:30px}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px;font-weight:500}
+.form-group input,.form-group textarea{
+  width:100%;background:#0a0d1c;border:1.5px solid var(--border);border-radius:10px;
+  padding:12px 14px;color:var(--text);font-family:inherit;font-size:15px;transition:.2s;
+}
+.form-group input:focus,.form-group textarea:focus{outline:none;border-color:var(--primary-2)}
+.form-group textarea{min-height:110px;resize:vertical}
+
+/* ====== VENN DIAGRAM ====== */
+.venn-wrap{display:flex;justify-content:center;margin:30px 0}
+.venn{width:100%;max-width:520px;height:auto}
+
+/* ====== FOOTER ====== */
+.footer{background:#03040a;border-top:1px solid var(--border);padding:60px 0 30px;margin-top:40px}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px;margin-bottom:36px}
+.footer h4{font-size:15px;margin-bottom:14px;color:var(--text);text-transform:uppercase;letter-spacing:1px;font-size:13px}
+.footer ul{list-style:none}
+.footer ul li{margin-bottom:8px}
+.footer ul a{color:var(--muted);font-size:14px;transition:.2s}
+.footer ul a:hover{color:var(--primary-2)}
+.footer-about p{color:var(--muted);font-size:14px;margin-top:10px}
+.social{display:flex;gap:10px;margin-top:14px}
+.social a{
+  width:38px;height:38px;border-radius:10px;background:var(--surface);border:1px solid var(--border);
+  display:grid;place-items:center;color:var(--muted);font-size:18px;transition:.2s;
+}
+.social a:hover{background:var(--grad);color:#0b1020;border-color:transparent}
+.copyr{text-align:center;padding-top:24px;border-top:1px solid var(--border);color:var(--muted);font-size:13px}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width:980px){
+  .hero-grid{grid-template-columns:1fr;gap:50px}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .contact-grid{grid-template-columns:1fr}
+}
+@media (max-width:680px){
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--bg-2);flex-direction:column;padding:18px;gap:14px;border-bottom:1px solid var(--border)}
+  .nav-links.open{display:flex}
+  .menu-btn{display:block}
+  .footer-grid{grid-template-columns:1fr}
+  .hero{padding:60px 0 40px}
+  .section{padding:60px 0}
+  .topic{padding:20px}
+  .stats{gap:20px}
+}
+
+/* fade in */
+.reveal{opacity:0;transform:translateY(20px);transition:.7s}
+.reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav-inner">
+    <div class="logo">
+      <div class="logo-mark">{ }</div>
+      <span>Ramsir<span style="color:var(--primary-2)">.dev</span></span>
+    </div>
+    <nav class="nav-links" id="navLinks">
+      <a href="#chapters">Chapters</a>
+      <a href="#patterns">Patterns</a>
+      <a href="#dsa">DSA</a>
+      <a href="#quiz">Quiz</a>
+      <a href="#mentor">1:1 Mentor</a>
+      <a href="#trainers">Trainers</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="btn btn-primary" onclick="document.getElementById('mentor').scrollIntoView({behavior:'smooth'})">Enroll →</button>
+    <button class="menu-btn" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="reveal">
+      <div class="tag">★ Zero to Hero · Interview Ready · 2026 Edition</div>
+      <h1>Master <span class="grad">Java Programming</span> the right way.</h1>
+      <p class="lead">A deep, structured journey from <b>"What is programming?"</b> all the way to OOPs, DSA, Collections, Multithreading, and 100+ interview questions — every concept with definition, use case, code & output.</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" onclick="document.getElementById('chapters').scrollIntoView({behavior:'smooth'})">▶ Start Learning</button>
+        <button class="btn btn-ghost" onclick="document.getElementById('quiz').scrollIntoView({behavior:'smooth'})">⚡ Take the Quiz</button>
+      </div>
+      <div class="stats">
+        <div><div class="stat-num">60+</div><div class="stat-label">Topics</div></div>
+        <div><div class="stat-num">22+</div><div class="stat-label">Patterns</div></div>
+        <div><div class="stat-num">50+</div><div class="stat-label">DSA Problems</div></div>
+        <div><div class="stat-num">100+</div><div class="stat-label">MCQs</div></div>
+      </div>
+    </div>
+    <div class="hero-card reveal">
+      <div class="float-icon fi-1">☕</div>
+      <div class="float-icon fi-2">⚡</div>
+      <div class="terminal-bar"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+      <pre class="hero-code"><span class="c">// Hello, future Java engineer 👋</span>
+<span class="k">public class</span> <span class="t">Hero</span> {
+  <span class="k">public static void</span> main(String[] args){
+    String[] skills = {<span class="s">"OOP"</span>,<span class="s">"DSA"</span>,<span class="s">"Spring"</span>};
+    <span class="k">for</span>(String s : skills)
+      System.out.println(<span class="s">"Mastering: "</span> + s);
+  }
+}
+<span class="c">// Output:</span>
+<span class="c">// Mastering: OOP</span>
+<span class="c">// Mastering: DSA</span>
+<span class="c">// Mastering: Spring</span></pre>
+    </div>
+  </div>
+</section>
+<section class="section" id="chapters"><div class="container"><div class="section-head reveal"><div class="tag">📚 Curriculum</div><h2>The complete <span class="grad">Java roadmap</span></h2><p>Every chapter packed with theory, real-life use cases, runnable code & output. Built for absolute beginners and interview aspirants.</p></div><div class="ch-grid"><div class="ch-card reveal"><div class="ch-icon">01</div><h3>Foundations</h3><ul><li>Why Programming</li><li>What is Programming</li><li>Communication Process</li><li>Why Different Languages</li><li>First Java Program</li><li>Print Student Info</li></ul></div><div class="ch-card reveal"><div class="ch-icon">02</div><h3>Core Building Blocks</h3><ul><li>Variables</li><li>Data Types</li><li>Operators</li><li>Decision Making</li><li>Loops</li><li>Arrays</li></ul></div><div class="ch-card reveal"><div class="ch-icon">03</div><h3>Logic Practice</h3><ul><li>15+ Logical Questions</li></ul></div><div class="ch-card reveal"><div class="ch-icon">04</div><h3>Functions &amp; Modular Code</h3><ul><li>Functions: Types &amp; Categories</li><li>Student Report Card</li></ul></div><div class="ch-card reveal"><div class="ch-icon">05</div><h3>C-style Concepts in Java</h3><ul><li>Structures &amp; Unions</li><li>File Handling</li><li>STL vs Java Collections</li><li>Header Files</li></ul></div><div class="ch-card reveal"><div class="ch-icon">06</div><h3>Pattern Mastery</h3><ul><li>20+ Star Patterns</li></ul></div><div class="ch-card reveal"><div class="ch-icon">07</div><h3>Object-Oriented Programming</h3><ul><li>OOPs Intro</li><li>Class &amp; Object</li><li>Inheritance &amp; Types</li><li>Constructor &amp; Destructor</li><li>Encapsulation</li><li>Polymorphism</li><li>Abstraction</li></ul></div><div class="ch-card reveal"><div class="ch-icon">08</div><h3>Strings &amp; Collections</h3><ul><li>String Manipulation</li><li>Collection Framework</li></ul></div><div class="ch-card reveal"><div class="ch-icon">09</div><h3>DSA</h3><ul><li>50+ DSA Problems</li></ul></div><div class="ch-card reveal"><div class="ch-icon">10</div><h3>Quiz</h3><ul><li>100+ MCQs</li></ul></div><div class="ch-card reveal"><div class="ch-icon">11</div><h3>Advanced Java</h3><ul><li>Exception Handling</li><li>Multithreading</li><li>JDBC</li><li>Lambda &amp; Streams</li><li>Generics</li><li>File IO NIO</li></ul></div></div></div></section><section class="section" id="foundations"><div class="container"><div class="section-head reveal"><div class="tag">🌱 Chapter 1</div><h2>Foundations of <span class="grad">Programming</span></h2></div>
+<article class="topic" id="t-why-programming">
+  <h3 class="topic-title"><span class="t-icon">▣</span> Why Programming?</h3>
+  <div class="def"><b>Definition:</b> Programming is the way humans give instructions to computers to solve problems and automate work.</div>
+  <div class="usec"><b>Use case:</b> Build apps, websites, games, AI, automate boring tasks, analyze data, create startups, get high-paying jobs.</div>
+  
+  
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>// A computer without code is just metal.
+// With code, it becomes Instagram, Netflix, ChatGPT, ISRO satellites...
+System.out.println(&quot;Code is the new superpower 🚀&quot;);</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>Code is the new superpower 🚀</pre></div>
+</div>
+
+</article>
+
+<article class="topic" id="t-what-is-programming">
+  <h3 class="topic-title"><span class="t-icon">▣</span> What is Programming?</h3>
+  <div class="def"><b>Definition:</b> Programming = writing a sequence of instructions (algorithm) in a language the computer understands, which is then translated to machine code.</div>
+  <div class="usec"><b>Use case:</b> Used to build every digital product around you — from a calculator to ChatGPT.</div>
+  
+  
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>// Recipe analogy: ingredients (data) + steps (logic) = dish (output)
+int rice=2, water=4;
+int cookedRice = rice + water;
+System.out.println(&quot;Cups served: &quot; + cookedRice);</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>Cups served: 6</pre></div>
+</div>
+
+</article>
+
+<article class="topic" id="t-communication-process-of-programming">
+  <h3 class="topic-title"><span class="t-icon">▣</span> Communication Process of Programming</h3>
+  <div class="def"><b>Definition:</b> Programmer writes high-level code → Compiler converts it to bytecode/machine code → CPU executes it → Output is shown.</div>
+  <div class="usec"><b>Use case:</b> Understand how your Java file actually runs on Windows, Mac or Linux without any change (Write Once, Run Anywhere).</div>
+  
+<div class="venn-wrap"><svg class="venn" viewBox="0 0 520 280" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#7c5cff"/><stop offset="1" stop-color="#22d3ee"/></linearGradient>
+    <linearGradient id="g2" x1="0" x2="1"><stop offset="0" stop-color="#22d3ee"/><stop offset="1" stop-color="#34d399"/></linearGradient>
+    <linearGradient id="g3" x1="0" x2="1"><stop offset="0" stop-color="#f472b6"/><stop offset="1" stop-color="#7c5cff"/></linearGradient>
+  </defs>
+  <rect width="520" height="280" fill="transparent"/>
+  <g font-family="Space Grotesk" font-size="14" fill="#e6ebff" text-anchor="middle">
+    <rect x="40" y="110" width="120" height="60" rx="12" fill="url(#g1)" opacity=".85"/>
+    <text x="100" y="145">Programmer</text>
+    <text x="100" y="190" fill="#8a92b2" font-size="11">writes code</text>
+
+    <rect x="200" y="110" width="120" height="60" rx="12" fill="url(#g3)" opacity=".85"/>
+    <text x="260" y="145">Compiler / JVM</text>
+    <text x="260" y="190" fill="#8a92b2" font-size="11">translates</text>
+
+    <rect x="360" y="110" width="120" height="60" rx="12" fill="url(#g2)" opacity=".85"/>
+    <text x="420" y="145">Computer</text>
+    <text x="420" y="190" fill="#8a92b2" font-size="11">executes</text>
+
+    <line x1="160" y1="140" x2="200" y2="140" stroke="#22d3ee" stroke-width="2" marker-end="url(#a)"/>
+    <line x1="320" y1="140" x2="360" y2="140" stroke="#22d3ee" stroke-width="2" marker-end="url(#a)"/>
+    <defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#22d3ee"/></marker></defs>
+
+    <text x="260" y="50" font-size="18" fill="#cdb8ff" font-weight="600">Communication Process of Programming</text>
+    <text x="260" y="240" font-size="12" fill="#8a92b2">Source code → Bytecode (.class) → JVM → Machine code → Output</text>
+  </g>
+</svg></div>
+  
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>// Java flow:
+// .java  --javac--&gt;  .class (bytecode)  --JVM--&gt;  Machine code  --&gt;  Output
+public class Hi { public static void main(String[] a){ System.out.println(&quot;Hi&quot;); } }</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>Hi</pre></div>
+</div>
+
+</article>
+
+<article class="topic" id="t-why-different-programming-languages">
+  <h3 class="topic-title"><span class="t-icon">▣</span> Why Different Programming Languages?</h3>
+  <div class="def"><b>Definition:</b> Each language is optimized for a domain — speed, safety, web, data, mobile, systems, AI.</div>
+  <div class="usec"><b>Use case:</b> Pick the right tool for the job: C for OS kernels, Java for enterprise, Python for AI, JS for web.</div>
+  
+  
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>/* Examples:
+   C       -&gt; Operating systems, embedded
+   C++     -&gt; Game engines, browsers
+   Java    -&gt; Enterprise, Android, banking
+   Python  -&gt; AI/ML, data, scripting
+   JS      -&gt; Web frontend / Node backend
+   Go/Rust -&gt; Cloud, systems, performance
+*/
+System.out.println(&quot;Right language → right problem&quot;);</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>Right language → right problem</pre></div>
+</div>
+
+</article>
+
+<article class="topic" id="t-your-first-java-program">
+  <h3 class="topic-title"><span class="t-icon">▣</span> Your First Java Program</h3>
+  <div class="def"><b>Definition:</b> A Java program is built around classes. main() is the entry point JVM looks for.</div>
+  <div class="usec"><b>Use case:</b> Every Java app — from Minecraft to a banking system — starts from a public static void main.</div>
+  
+  
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public class HelloWorld {
+  public static void main(String[] args){
+    System.out.println(&quot;Hello, World!&quot;);
+  }
+}
+/* How to run:
+   1) Save as HelloWorld.java
+   2) javac HelloWorld.java   -&gt; creates HelloWorld.class
+   3) java HelloWorld         -&gt; runs it
+*/</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>Hello, World!</pre></div>
+</div>
+
+</article>
+
+<article class="topic" id="t-print-name--class--roll--subject-in-single-program">
+  <h3 class="topic-title"><span class="t-icon">▣</span> Print Name, Class, Roll, Subject in Single Program</h3>
+  <div class="def"><b>Definition:</b> Use System.out.println / printf to display structured info.</div>
+  <div class="usec"><b>Use case:</b> First step toward building forms, profile pages, dashboards.</div>
+  
+  
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public class Profile {
+  public static void main(String[] args){
+    String name=&quot;Aman Kumar&quot;;
+    String cls =&quot;10-A&quot;;
+    int    roll=23;
+    String subject=&quot;Computer Science&quot;;
+
+    System.out.println(&quot;===== Student Profile =====&quot;);
+    System.out.println(&quot;Name    : &quot; + name);
+    System.out.println(&quot;Class   : &quot; + cls);
+    System.out.println(&quot;Roll No : &quot; + roll);
+    System.out.println(&quot;Subject : &quot; + subject);
+  }
+}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>===== Student Profile =====
+Name    : Aman Kumar
+Class   : 10-A
+Roll No : 23
+Subject : Computer Science</pre></div>
+</div>
+
+</article>
+</div></section><section class="section" id="core"><div class="container"><div class="section-head reveal"><div class="tag">🧱 Chapter 2</div><h2>Core <span class="grad">Building Blocks</span></h2></div>
+<article class="topic" id="t-variables---definition---use">
+  <h3 class="topic-title"><span class="t-icon">▣</span> Variables — Definition &amp; Use</h3>
+  <div class="def"><b>Definition:</b> A variable is a named memory location that stores a value which can change during program execution.</div>
+  <div class="usec"><b>Use case:</b> Store user input, scores, prices, counters — basically anything dynamic.</div>
+  
+  
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public class Vars {
+  public static void main(String[] args){
+    int    age   = 21;          // integer
+    double price = 499.99;      // decimal
+    char   grade = &#x27;A&#x27;;         // single char
+    String name  = &quot;Riya&quot;;      // text
+    boolean isPaid = true;      // true/false
+
+    System.out.println(name+&quot; | &quot;+age+&quot; | &quot;+price+&quot; | &quot;+grade+&quot; | &quot;+isPaid);
+  }
+}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>Riya | 21 | 499.99 | A | true</pre></div>
+</div>
+
+</article>
+
+<article class="topic" id="t-data-types---static---dynamic">
+  <h3 class="topic-title"><span class="t-icon">▣</span> Data Types — Static &amp; Dynamic</h3>
+  <div class="def"><b>Definition:</b> Data type tells the compiler what kind of value a variable can hold and how much memory to allocate.</div>
+  <div class="usec"><b>Use case:</b> Choose the smallest correct type to save memory and avoid overflow bugs.</div>
+  <table class="tbl"><thead><tr><th>Type</th><th>Description</th><th>Range</th><th>Example</th></tr></thead><tbody><tr><td><b style="color:var(--primary-2)">byte</b></td><td>8-bit integer</td><td>-128 to 127</td><td><code>byte b=10;</code></td></tr><tr><td><b style="color:var(--primary-2)">short</b></td><td>16-bit integer</td><td>-32,768 to 32,767</td><td><code>short s=200;</code></td></tr><tr><td><b style="color:var(--primary-2)">int</b></td><td>32-bit integer</td><td>~ ±2.1B</td><td><code>int i=100000;</code></td></tr><tr><td><b style="color:var(--primary-2)">long</b></td><td>64-bit integer</td><td>very large</td><td><code>long l=12345678910L;</code></td></tr><tr><td><b style="color:var(--primary-2)">float</b></td><td>32-bit decimal</td><td>approx 7 digits</td><td><code>float f=3.14f;</code></td></tr><tr><td><b style="color:var(--primary-2)">double</b></td><td>64-bit decimal</td><td>approx 15 digits</td><td><code>double d=3.14159;</code></td></tr><tr><td><b style="color:var(--primary-2)">char</b></td><td>16-bit Unicode</td><td>single char</td><td><code>char c=&#x27;A&#x27;;</code></td></tr><tr><td><b style="color:var(--primary-2)">boolean</b></td><td>true/false</td><td>logical</td><td><code>boolean b=true;</code></td></tr><tr><td><b style="color:var(--primary-2)">String</b></td><td>Object - sequence of chars</td><td>text</td><td><code>String s=&quot;Hello&quot;;</code></td></tr></tbody></table>
+  
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>import java.util.Scanner;
+public class Types {
+  public static void main(String[] args){
+    // STATIC values (hard-coded)
+    int s = 100;
+    double pi = 3.14159;
+
+    // DYNAMIC values (from user)
+    Scanner sc = new Scanner(System.in);
+    System.out.print(&quot;Enter age: &quot;);
+    int age = sc.nextInt();
+
+    System.out.println(&quot;Static int: &quot; + s);
+    System.out.println(&quot;Static double: &quot; + pi);
+    System.out.println(&quot;Dynamic age: &quot; + age);
+  }
+}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>Static int: 100
+Static double: 3.14159
+Dynamic age: (whatever user enters)</pre></div>
+</div>
+
+</article>
+
+<article class="topic">
+  <h3 class="topic-title"><span class="t-icon">▣</span> Operators — Each Type with Code</h3>
+  <div class="def"><b>Definition:</b> Operators are symbols that perform operations on variables and values.</div>
+  <div class="usec"><b>Use case:</b> Math, comparison, decision-making, bit-level manipulation.</div>
+  <div class="topic" style="margin-top:14px"><h4 style="color:var(--primary-2);margin-bottom:8px">⚙ Arithmetic (+ - * / %)</h4>
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int a=10,b=3; System.out.println(a+b+&quot; &quot;+a-b+&quot; &quot;+a*b+&quot; &quot;+a/b+&quot; &quot;+a%b);</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>13 7 30 3 1</pre></div>
+</div>
+</div><div class="topic" style="margin-top:14px"><h4 style="color:var(--primary-2);margin-bottom:8px">⚙ Relational (== != &gt; &lt; &gt;= &lt;=)</h4>
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int a=5,b=8; System.out.println(a&lt;b);</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>true</pre></div>
+</div>
+</div><div class="topic" style="margin-top:14px"><h4 style="color:var(--primary-2);margin-bottom:8px">⚙ Logical (&amp;&amp; || !)</h4>
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>boolean x=true,y=false; System.out.println(x&amp;&amp;y); System.out.println(x||y); System.out.println(!x);</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>false
+true
+false</pre></div>
+</div>
+</div><div class="topic" style="margin-top:14px"><h4 style="color:var(--primary-2);margin-bottom:8px">⚙ Assignment (= += -= *= /=)</h4>
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int a=10; a+=5; System.out.println(a);</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>15</pre></div>
+</div>
+</div><div class="topic" style="margin-top:14px"><h4 style="color:var(--primary-2);margin-bottom:8px">⚙ Bitwise (&amp; | ^ ~ &lt;&lt; &gt;&gt;)</h4>
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int a=5,b=3; System.out.println(a&amp;b); System.out.println(a|b); System.out.println(a^b);</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>1
+7
+6</pre></div>
+</div>
+</div><div class="topic" style="margin-top:14px"><h4 style="color:var(--primary-2);margin-bottom:8px">⚙ Unary (++ --)</h4>
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int a=5; System.out.println(++a); System.out.println(a--);</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>6
+6</pre></div>
+</div>
+</div><div class="topic" style="margin-top:14px"><h4 style="color:var(--primary-2);margin-bottom:8px">⚙ Ternary (?:)</h4>
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int a=10; System.out.println(a%2==0?&quot;Even&quot;:&quot;Odd&quot;);</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>Even</pre></div>
+</div>
+</div>
+</article>
+<article class="topic">
+  <h3 class="topic-title"><span class="t-icon">▣</span> Decision Making — 4 Statements (Real Life)</h3>
+  <div class="def"><b>Definition:</b> Control flow statements that run different code based on conditions.</div>
+  <div class="usec"><b>Use case:</b> Login validation, grade calculation, menu selection, eligibility checks.</div>
+  <div class="topic" style="margin-top:14px"><h4 style="color:var(--primary-2);margin-bottom:6px">🔀 if statement</h4><div class="usec">Run code if condition true (e.g., login success).</div>
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int age=20; if(age&gt;=18) System.out.println(&quot;Allowed to vote&quot;);</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>Allowed to vote</pre></div>
+</div>
+</div><div class="topic" style="margin-top:14px"><h4 style="color:var(--primary-2);margin-bottom:6px">🔀 if-else</h4><div class="usec">Choose between two paths (pass/fail).</div>
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int marks=72; if(marks&gt;=40) System.out.println(&quot;Pass&quot;); else System.out.println(&quot;Fail&quot;);</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>Pass</pre></div>
+</div>
+</div><div class="topic" style="margin-top:14px"><h4 style="color:var(--primary-2);margin-bottom:6px">🔀 else-if ladder</h4><div class="usec">Grade calculator.</div>
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int m=85; if(m&gt;=90)System.out.println(&quot;A+&quot;); else if(m&gt;=75)System.out.println(&quot;A&quot;); else if(m&gt;=60)System.out.println(&quot;B&quot;); else System.out.println(&quot;C&quot;);</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>A</pre></div>
+</div>
+</div><div class="topic" style="margin-top:14px"><h4 style="color:var(--primary-2);margin-bottom:6px">🔀 switch-case</h4><div class="usec">Day of week menu.</div>
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int d=3; switch(d){case 1:System.out.println(&quot;Mon&quot;);break;case 2:System.out.println(&quot;Tue&quot;);break;case 3:System.out.println(&quot;Wed&quot;);break;default:System.out.println(&quot;Other&quot;);}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>Wed</pre></div>
+</div>
+</div>
+</article>
+<article class="topic">
+  <h3 class="topic-title"><span class="t-icon">▣</span> Loops — Types with Real Life Code</h3>
+  <div class="def"><b>Definition:</b> Loops repeat a block of code until a condition becomes false.</div>
+  <div class="usec"><b>Use case:</b> Process lists, retry inputs, generate reports, scrape pages.</div>
+  <div class="topic" style="margin-top:14px"><h4 style="color:var(--primary-2);margin-bottom:6px">🔁 for loop</h4><div class="usec">Print 1..5.</div>
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>for(int i=1;i&lt;=5;i++) System.out.print(i+&quot; &quot;);</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>1 2 3 4 5 </pre></div>
+</div>
+</div><div class="topic" style="margin-top:14px"><h4 style="color:var(--primary-2);margin-bottom:6px">🔁 while loop</h4><div class="usec">ATM PIN attempts.</div>
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int t=3; while(t&gt;0){System.out.println(&quot;Try left: &quot;+t); t--;}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>Try left: 3
+Try left: 2
+Try left: 1</pre></div>
+</div>
+</div><div class="topic" style="margin-top:14px"><h4 style="color:var(--primary-2);margin-bottom:6px">🔁 do-while</h4><div class="usec">Menu shown at least once.</div>
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int i=10; do{System.out.println(&quot;Show menu &quot;+i); i++;}while(i&lt;10);</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>Show menu 10</pre></div>
+</div>
+</div><div class="topic" style="margin-top:14px"><h4 style="color:var(--primary-2);margin-bottom:6px">🔁 for-each</h4><div class="usec">Iterate list of fruits.</div>
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>String[] f={&quot;Apple&quot;,&quot;Mango&quot;,&quot;Kiwi&quot;}; for(String x:f) System.out.println(x);</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>Apple
+Mango
+Kiwi</pre></div>
+</div>
+</div>
+</article>
+<article class="topic">
+  <h3 class="topic-title"><span class="t-icon">▣</span> Arrays — Types with Static & Dynamic Code</h3>
+  <div class="def"><b>Definition:</b> An array is a fixed-size collection of elements of the same type stored in contiguous memory.</div>
+  <div class="usec"><b>Use case:</b> Marks of students, pixels of image, grid of game, inventory items.</div>
+  <div class="topic" style="margin-top:14px"><h4 style="color:var(--primary-2);margin-bottom:6px">🧮 1D Array (Static)</h4><div class="usec">Fixed values declared inline.</div>
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int[] a={10,20,30,40}; for(int x:a) System.out.print(x+&quot; &quot;);</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>10 20 30 40 </pre></div>
+</div>
+</div><div class="topic" style="margin-top:14px"><h4 style="color:var(--primary-2);margin-bottom:6px">🧮 1D Array (Dynamic via Scanner)</h4><div class="usec">Sized at runtime.</div>
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>import java.util.Scanner;
+class Demo{public static void main(String[] a){Scanner sc=new Scanner(System.in);int n=sc.nextInt();int[] arr=new int[n];for(int i=0;i&lt;n;i++)arr[i]=sc.nextInt();for(int x:arr)System.out.print(x+&quot; &quot;);}}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>(depends on user input)</pre></div>
+</div>
+</div><div class="topic" style="margin-top:14px"><h4 style="color:var(--primary-2);margin-bottom:6px">🧮 2D Array (Static)</h4><div class="usec">Matrix literal.</div>
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int[][] m={{1,2},{3,4}}; for(int[] r:m){for(int x:r)System.out.print(x+&quot; &quot;);System.out.println();}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>1 2 
+3 4 </pre></div>
+</div>
+</div><div class="topic" style="margin-top:14px"><h4 style="color:var(--primary-2);margin-bottom:6px">🧮 2D Array (Dynamic)</h4><div class="usec">Allocated then filled.</div>
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int r=2,c=3; int[][] m=new int[r][c]; int k=1; for(int i=0;i&lt;r;i++)for(int j=0;j&lt;c;j++)m[i][j]=k++; for(int[] x:m){for(int y:x)System.out.print(y+&quot; &quot;);System.out.println();}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>1 2 3 
+4 5 6 </pre></div>
+</div>
+</div><div class="topic" style="margin-top:14px"><h4 style="color:var(--primary-2);margin-bottom:6px">🧮 Jagged Array</h4><div class="usec">Rows of different lengths.</div>
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int[][] j=new int[3][]; j[0]=new int[]{1}; j[1]=new int[]{2,3}; j[2]=new int[]{4,5,6}; for(int[] r:j){for(int x:r)System.out.print(x+&quot; &quot;);System.out.println();}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>1 
+2 3 
+4 5 6 </pre></div>
+</div>
+</div>
+</article></div></section><section class="section" id="logic"><div class="container"><div class="section-head reveal"><div class="tag">🧠 Practice</div><h2>15+ Logical <span class="grad">Programming Questions</span></h2><p>Operators, decision-making, loops & arrays — solved with code & output.</p></div><article class="topic reveal"><h3 class="topic-title"><span class="t-icon">Q1</span> Even or Odd</h3><div class="usec"><b>Logic:</b> Use modulus operator.</div>
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int n=17; System.out.println(n%2==0?&quot;Even&quot;:&quot;Odd&quot;);</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>Odd</pre></div>
+</div>
+</article><article class="topic reveal"><h3 class="topic-title"><span class="t-icon">Q2</span> Largest of 3</h3><div class="usec"><b>Logic:</b> Nested if.</div>
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int a=10,b=20,c=15; System.out.println(a&gt;b?(a&gt;c?a:c):(b&gt;c?b:c));</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>20</pre></div>
+</div>
+</article><article class="topic reveal"><h3 class="topic-title"><span class="t-icon">Q3</span> Sum 1..100</h3><div class="usec"><b>Logic:</b> for loop.</div>
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int s=0; for(int i=1;i&lt;=100;i++)s+=i; System.out.println(s);</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>5050</pre></div>
+</div>
+</article><article class="topic reveal"><h3 class="topic-title"><span class="t-icon">Q4</span> Multiplication Table</h3><div class="usec"><b>Logic:</b> Loop.</div>
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int n=5; for(int i=1;i&lt;=10;i++)System.out.println(n+&quot; x &quot;+i+&quot; = &quot;+(n*i));</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>5 x 1 = 5
+5 x 2 = 10
+... 5 x 10 = 50</pre></div>
+</div>
+</article><article class="topic reveal"><h3 class="topic-title"><span class="t-icon">Q5</span> Reverse a Number</h3><div class="usec"><b>Logic:</b> While + mod.</div>
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int n=1234,r=0; while(n&gt;0){r=r*10+n%10;n/=10;} System.out.println(r);</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>4321</pre></div>
+</div>
+</article><article class="topic reveal"><h3 class="topic-title"><span class="t-icon">Q6</span> Palindrome Number</h3><div class="usec"><b>Logic:</b> Reverse compare.</div>
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int n=121,t=n,r=0; while(t&gt;0){r=r*10+t%10;t/=10;} System.out.println(n==r?&quot;Palin&quot;:&quot;Not&quot;);</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>Palin</pre></div>
+</div>
+</article><article class="topic reveal"><h3 class="topic-title"><span class="t-icon">Q7</span> Prime Check</h3><div class="usec"><b>Logic:</b> Loop sqrt.</div>
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int n=29; boolean p=n&gt;1; for(int i=2;i*i&lt;=n;i++)if(n%i==0){p=false;break;} System.out.println(p);</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>true</pre></div>
+</div>
+</article><article class="topic reveal"><h3 class="topic-title"><span class="t-icon">Q8</span> Fibonacci 10 Terms</h3><div class="usec"><b>Logic:</b> Iterative.</div>
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int a=0,b=1; for(int i=0;i&lt;10;i++){System.out.print(a+&quot; &quot;); int c=a+b;a=b;b=c;}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>0 1 1 2 3 5 8 13 21 34 </pre></div>
+</div>
+</article><article class="topic reveal"><h3 class="topic-title"><span class="t-icon">Q9</span> Sum of Array</h3><div class="usec"><b>Logic:</b> for-each.</div>
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int[] a={3,5,7,9}; int s=0; for(int x:a)s+=x; System.out.println(s);</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>24</pre></div>
+</div>
+</article><article class="topic reveal"><h3 class="topic-title"><span class="t-icon">Q10</span> Max in Array</h3><div class="usec"><b>Logic:</b> Linear scan.</div>
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int[] a={5,9,2,7}; int m=a[0]; for(int x:a)if(x&gt;m)m=x; System.out.println(m);</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>9</pre></div>
+</div>
+</article><article class="topic reveal"><h3 class="topic-title"><span class="t-icon">Q11</span> Linear Search Array</h3><div class="usec"><b>Logic:</b> for loop.</div>
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int[] a={4,8,3,9}; int x=3,idx=-1; for(int i=0;i&lt;a.length;i++)if(a[i]==x){idx=i;break;} System.out.println(idx);</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>2</pre></div>
+</div>
+</article><article class="topic reveal"><h3 class="topic-title"><span class="t-icon">Q12</span> Sort Array (Bubble)</h3><div class="usec"><b>Logic:</b> Nested.</div>
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int[] a={5,2,8,1}; for(int i=0;i&lt;a.length-1;i++)for(int j=0;j&lt;a.length-1-i;j++)if(a[j]&gt;a[j+1]){int t=a[j];a[j]=a[j+1];a[j+1]=t;} System.out.println(java.util.Arrays.toString(a));</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>[1, 2, 5, 8]</pre></div>
+</div>
+</article><article class="topic reveal"><h3 class="topic-title"><span class="t-icon">Q13</span> Count Vowels</h3><div class="usec"><b>Logic:</b> Loop+contains.</div>
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>String s=&quot;HelloWorld&quot;; int c=0; for(char ch:s.toLowerCase().toCharArray())if(&quot;aeiou&quot;.indexOf(ch)&gt;=0)c++; System.out.println(c);</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>3</pre></div>
+</div>
+</article><article class="topic reveal"><h3 class="topic-title"><span class="t-icon">Q14</span> Reverse String</h3><div class="usec"><b>Logic:</b> StringBuilder.</div>
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>String s=&quot;Java&quot;; System.out.println(new StringBuilder(s).reverse());</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>avaJ</pre></div>
+</div>
+</article><article class="topic reveal"><h3 class="topic-title"><span class="t-icon">Q15</span> FizzBuzz 1..15</h3><div class="usec"><b>Logic:</b> Loops + conditions.</div>
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>for(int i=1;i&lt;=15;i++){if(i%15==0)System.out.println(&quot;FizzBuzz&quot;);else if(i%3==0)System.out.println(&quot;Fizz&quot;);else if(i%5==0)System.out.println(&quot;Buzz&quot;);else System.out.println(i);}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>1
+2
+Fizz
+4
+Buzz
+Fizz
+7
+8
+Fizz
+Buzz
+11
+Fizz
+13
+14
+FizzBuzz</pre></div>
+</div>
+</article><article class="topic reveal"><h3 class="topic-title"><span class="t-icon">Q16</span> Leap Year</h3><div class="usec"><b>Logic:</b> Conditions.</div>
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int y=2024; boolean l=(y%4==0&amp;&amp;y%100!=0)||(y%400==0); System.out.println(l);</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>true</pre></div>
+</div>
+</article><article class="topic reveal"><h3 class="topic-title"><span class="t-icon">Q17</span> Swap Two Numbers</h3><div class="usec"><b>Logic:</b> Without temp.</div>
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int a=5,b=9; a=a+b; b=a-b; a=a-b; System.out.println(a+&quot; &quot;+b);</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>9 5</pre></div>
+</div>
+</article></div></section><section class="section" id="functions"><div class="container"><div class="section-head reveal"><div class="tag">🧩 Chapter 4</div><h2>Functions / <span class="grad">Methods</span></h2></div><article class="topic reveal"><h3 class="topic-title"><span class="t-icon">▣</span> Function: Definition & Categories</h3><div class="def"><b>Definition:</b> A function (method in Java) is a reusable block of code that performs a specific task. It improves modularity, reusability, and readability.</div><div class="usec"><b>Categories (4 types):</b></div><div style="margin-top:10px"><h4 style="color:var(--primary-2);margin-bottom:6px">▸ No args, No return</h4>
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>static void greet(){System.out.println(&quot;Hello&quot;);}</code></pre>
+  
+</div>
+</div><div style="margin-top:10px"><h4 style="color:var(--primary-2);margin-bottom:6px">▸ With args, No return</h4>
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>static void hello(String n){System.out.println(&quot;Hi &quot;+n);}</code></pre>
+  
+</div>
+</div><div style="margin-top:10px"><h4 style="color:var(--primary-2);margin-bottom:6px">▸ No args, With return</h4>
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>static int five(){return 5;}</code></pre>
+  
+</div>
+</div><div style="margin-top:10px"><h4 style="color:var(--primary-2);margin-bottom:6px">▸ With args, With return</h4>
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>static int add(int a,int b){return a+b;}</code></pre>
+  
+</div>
+</div></article><article class="topic reveal"><h3 class="topic-title"><span class="t-icon">▣</span> Best Example — Print Student Report Card (Static + Dynamic)</h3><div class="def"><b>Definition:</b> Combines variables, arrays, loops, conditions and methods into a real-world program.</div><div class="usec"><b>Use case:</b> School/college result systems, payslip, invoice printers.</div>
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>import java.util.Scanner;
+public class ReportCard {
+  static String grade(double avg){
+    if(avg&gt;=90)return &quot;A+&quot;;
+    if(avg&gt;=75)return &quot;A&quot;;
+    if(avg&gt;=60)return &quot;B&quot;;
+    if(avg&gt;=40)return &quot;C&quot;;
+    return &quot;F&quot;;
+  }
+  public static void main(String[] args){
+    // STATIC values
+    String name=&quot;Aman Kumar&quot;; String cls=&quot;10-A&quot;; int roll=23;
+    int[] marks={92,85,78,88,70};
+    String[] subs={&quot;Math&quot;,&quot;Science&quot;,&quot;English&quot;,&quot;Hindi&quot;,&quot;Computer&quot;};
+
+    // DYNAMIC input (uncomment to read)
+    // Scanner sc=new Scanner(System.in);
+    // System.out.print(&quot;Name: &quot;); name=sc.nextLine();
+    // ... etc.
+
+    int total=0; for(int m:marks) total+=m;
+    double avg=total/(double)marks.length;
+
+    System.out.println(&quot;====== STUDENT REPORT CARD ======&quot;);
+    System.out.println(&quot;Name : &quot;+name);
+    System.out.println(&quot;Class: &quot;+cls);
+    System.out.println(&quot;Roll : &quot;+roll);
+    System.out.println(&quot;---------------------------------&quot;);
+    System.out.printf(&quot;%-12s %s%n&quot;,&quot;Subject&quot;,&quot;Marks&quot;);
+    for(int i=0;i&lt;subs.length;i++) System.out.printf(&quot;%-12s %d%n&quot;,subs[i],marks[i]);
+    System.out.println(&quot;---------------------------------&quot;);
+    System.out.println(&quot;Total: &quot;+total+&quot;/500&quot;);
+    System.out.printf(&quot;Avg  : %.2f%n&quot;,avg);
+    System.out.println(&quot;Grade: &quot;+grade(avg));
+  }
+}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>====== STUDENT REPORT CARD ======
+Name : Aman Kumar
+Class: 10-A
+Roll : 23
+---------------------------------
+Subject      Marks
+Math         92
+Science      85
+English      78
+Hindi        88
+Computer     70
+---------------------------------
+Total: 413/500
+Avg  : 82.60
+Grade: A</pre></div>
+</div>
+</article></div></section><section class="section" id="cstyle"><div class="container"><div class="section-head reveal"><div class="tag">🔧 Chapter 5</div><h2>C-style Concepts in <span class="grad">Java</span></h2><p>Structures, Unions, File handling, STL & Header files explained for Java programmers.</p></div>
+<article class="topic" id="t-structure---union--java-equivalent">
+  <h3 class="topic-title"><span class="t-icon">▣</span> Structure &amp; Union (Java equivalent)</h3>
+  <div class="def"><b>Definition:</b> C structures group different types under one name. Java has no struct/union — we use classes (and POJOs/records).</div>
+  <div class="usec"><b>Use case:</b> Model real-world entities: Student, Book, Employee.</div>
+  
+  
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>// &quot;Structure&quot; in Java -&gt; use a class / record
+class Student {
+  String name; int roll; double cgpa;
+  Student(String n,int r,double c){name=n;roll=r;cgpa=c;}
+}
+public class Demo{
+  public static void main(String[] a){
+    Student s = new Student(&quot;Riya&quot;,12,8.7);
+    System.out.println(s.name+&quot; &quot;+s.roll+&quot; &quot;+s.cgpa);
+  }
+}
+// &quot;Union&quot; (one memory shared) — Java has no union; closest is `Object` or sealed interfaces.</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>Riya 12 8.7</pre></div>
+</div>
+
+</article>
+
+<article class="topic" id="t-file-handling-in-java">
+  <h3 class="topic-title"><span class="t-icon">▣</span> File Handling in Java</h3>
+  <div class="def"><b>Definition:</b> Reading from and writing to files using java.io / java.nio.</div>
+  <div class="usec"><b>Use case:</b> Save user data, generate reports, parse CSV/JSON, log events.</div>
+  
+  
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>import java.io.*;
+public class FileDemo{
+  public static void main(String[] a) throws IOException{
+    // WRITE
+    BufferedWriter bw=new BufferedWriter(new FileWriter(&quot;notes.txt&quot;));
+    bw.write(&quot;Hello File!\nLine 2&quot;);
+    bw.close();
+
+    // READ
+    BufferedReader br=new BufferedReader(new FileReader(&quot;notes.txt&quot;));
+    String line; while((line=br.readLine())!=null) System.out.println(line);
+    br.close();
+  }
+}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>Hello File!
+Line 2</pre></div>
+</div>
+
+</article>
+
+<article class="topic" id="t-stl-vs-java-collections-framework">
+  <h3 class="topic-title"><span class="t-icon">▣</span> STL vs Java Collections Framework</h3>
+  <div class="def"><b>Definition:</b> C++ STL = Standard Template Library (vector, map, set, queue). Java's equivalent is the Collections Framework in java.util.</div>
+  <div class="usec"><b>Use case:</b> Reusable, type-safe, high-performance data structures with built-in algorithms.</div>
+  
+  
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>import java.util.*;
+public class StlVsJcf{
+  public static void main(String[] a){
+    List&lt;Integer&gt; v = new ArrayList&lt;&gt;(Arrays.asList(3,1,4,1,5,9));
+    Collections.sort(v);          // like std::sort
+    Set&lt;Integer&gt; s = new HashSet&lt;&gt;(v);  // like std::set
+    Map&lt;String,Integer&gt; m = new HashMap&lt;&gt;();
+    m.put(&quot;a&quot;,1); m.put(&quot;b&quot;,2);
+    System.out.println(v); System.out.println(s); System.out.println(m);
+  }
+}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>[1, 1, 3, 4, 5, 9]
+[1, 3, 4, 5, 9]
+{a=1, b=2}</pre></div>
+</div>
+
+</article>
+
+<article class="topic" id="t-header-files--java-equivalent--import---packages">
+  <h3 class="topic-title"><span class="t-icon">▣</span> Header Files (Java equivalent: import / packages)</h3>
+  <div class="def"><b>Definition:</b> C uses #include for headers. Java uses 'import' to bring in classes from packages.</div>
+  <div class="usec"><b>Use case:</b> Modular code, reuse libraries, organize big projects.</div>
+  
+  
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>// Create your own &quot;header&quot; -&gt; a utility class in a package
+// File: utils/MathHelper.java
+package utils;
+public class MathHelper {
+  public static int square(int x){ return x*x; }
+  public static int cube(int x){ return x*x*x; }
+}
+
+// File: Main.java
+import utils.MathHelper;
+public class Main {
+  public static void main(String[] a){
+    System.out.println(&quot;square(5) = &quot; + MathHelper.square(5));
+    System.out.println(&quot;cube(3)   = &quot; + MathHelper.cube(3));
+  }
+}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>square(5) = 25
+cube(3)   = 27</pre></div>
+</div>
+
+</article>
+</div></section><section class="section" id="patterns"><div class="container"><div class="section-head reveal"><div class="tag">⭐ Pattern Lab</div><h2>22+ Star <span class="grad">Patterns</span></h2><p>Build loop-mastery with classics — pyramid, diamond, hourglass, pascal & more. Every pattern with code + output.</p></div><div class="ch-grid" style="grid-template-columns:repeat(auto-fill,minmax(420px,1fr))"><article class="topic reveal" style="margin:0">
+          <h3 class="topic-title"><span class="t-icon">★01</span> Right Triangle</h3>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int n = 5;
+for(int i=1;i&lt;=n;i++){
+  for(int j=1;j&lt;=i;j++) System.out.print(&quot;* &quot;);
+  System.out.println();
+}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>* 
+* * 
+* * * 
+* * * * 
+* * * * * </pre></div>
+</div>
+
+        </article><article class="topic reveal" style="margin:0">
+          <h3 class="topic-title"><span class="t-icon">★02</span> Inverted Right Triangle</h3>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int n = 5;
+for(int i=n;i&gt;=1;i--){
+  for(int j=1;j&lt;=i;j++) System.out.print(&quot;* &quot;);
+  System.out.println();
+}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>* * * * * 
+* * * * 
+* * * 
+* * 
+* </pre></div>
+</div>
+
+        </article><article class="topic reveal" style="margin:0">
+          <h3 class="topic-title"><span class="t-icon">★03</span> Pyramid</h3>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int n = 5;
+for(int i=1;i&lt;=n;i++){
+  for(int j=i;j&lt;n;j++) System.out.print(&quot; &quot;);
+  for(int j=1;j&lt;=i;j++) System.out.print(&quot;* &quot;);
+  System.out.println();
+}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>    * 
+   * * 
+  * * * 
+ * * * * 
+* * * * * </pre></div>
+</div>
+
+        </article><article class="topic reveal" style="margin:0">
+          <h3 class="topic-title"><span class="t-icon">★04</span> Inverted Pyramid</h3>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int n = 5;
+for(int i=n;i&gt;=1;i--){
+  for(int j=i;j&lt;n;j++) System.out.print(&quot; &quot;);
+  for(int j=1;j&lt;=i;j++) System.out.print(&quot;* &quot;);
+  System.out.println();
+}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>* * * * * 
+ * * * * 
+  * * * 
+   * * 
+    * </pre></div>
+</div>
+
+        </article><article class="topic reveal" style="margin:0">
+          <h3 class="topic-title"><span class="t-icon">★05</span> Diamond</h3>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int n = 5;
+int n=5;
+for(int i=1;i&lt;=n;i++){for(int j=i;j&lt;n;j++)System.out.print(&quot; &quot;);for(int j=1;j&lt;=i;j++)System.out.print(&quot;* &quot;);System.out.println();}
+for(int i=n-1;i&gt;=1;i--){for(int j=i;j&lt;n;j++)System.out.print(&quot; &quot;);for(int j=1;j&lt;=i;j++)System.out.print(&quot;* &quot;);System.out.println();}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>    * 
+   * * 
+  * * * 
+ * * * * 
+* * * * * 
+ * * * * 
+  * * * 
+   * * 
+    * </pre></div>
+</div>
+
+        </article><article class="topic reveal" style="margin:0">
+          <h3 class="topic-title"><span class="t-icon">★06</span> Hollow Square</h3>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int n = 5;
+for(int i=0;i&lt;n;i++){
+  for(int j=0;j&lt;n;j++){
+    if(i==0||i==n-1||j==0||j==n-1) System.out.print(&quot;* &quot;);
+    else System.out.print(&quot;  &quot;);
+  }
+  System.out.println();
+}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>* * * * * 
+*       *
+*       *
+*       *
+* * * * * </pre></div>
+</div>
+
+        </article><article class="topic reveal" style="margin:0">
+          <h3 class="topic-title"><span class="t-icon">★07</span> Solid Square</h3>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int n = 5;
+for(int i=0;i&lt;n;i++){for(int j=0;j&lt;n;j++)System.out.print(&quot;* &quot;);System.out.println();}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>* * * * * 
+* * * * * 
+* * * * * 
+* * * * * 
+* * * * * </pre></div>
+</div>
+
+        </article><article class="topic reveal" style="margin:0">
+          <h3 class="topic-title"><span class="t-icon">★08</span> Number Triangle</h3>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int n = 5;
+for(int i=1;i&lt;=n;i++){for(int j=1;j&lt;=i;j++)System.out.print(j+&quot; &quot;);System.out.println();}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>1
+1 2
+1 2 3
+1 2 3 4
+1 2 3 4 5</pre></div>
+</div>
+
+        </article><article class="topic reveal" style="margin:0">
+          <h3 class="topic-title"><span class="t-icon">★09</span> Floyd&#x27;s Triangle</h3>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int n = 5;
+int k=1;for(int i=1;i&lt;=n;i++){for(int j=1;j&lt;=i;j++){System.out.print(k+&quot; &quot;);k++;}System.out.println();}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>1
+2 3
+4 5 6
+7 8 9 10
+11 12 13 14 15</pre></div>
+</div>
+
+        </article><article class="topic reveal" style="margin:0">
+          <h3 class="topic-title"><span class="t-icon">★10</span> Pascal Skeleton</h3>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int n = 5;
+for(int i=0;i&lt;n;i++){for(int j=0;j&lt;n-i-1;j++)System.out.print(&quot; &quot;);for(int j=0;j&lt;=i;j++)System.out.print(&quot;1 &quot;);System.out.println();}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>    1
+   1 1
+  1 1 1
+ 1 1 1 1
+1 1 1 1 1</pre></div>
+</div>
+
+        </article><article class="topic reveal" style="margin:0">
+          <h3 class="topic-title"><span class="t-icon">★11</span> Alphabet Triangle</h3>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int n = 5;
+for(int i=1;i&lt;=n;i++){for(int j=1;j&lt;=i;j++)System.out.print((char)(64+j)+&quot; &quot;);System.out.println();}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>A
+A B
+A B C
+A B C D
+A B C D E</pre></div>
+</div>
+
+        </article><article class="topic reveal" style="margin:0">
+          <h3 class="topic-title"><span class="t-icon">★12</span> Mirrored Right Triangle</h3>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int n = 5;
+for(int i=1;i&lt;=n;i++){for(int j=1;j&lt;=n-i;j++)System.out.print(&quot; &quot;);for(int j=1;j&lt;=i;j++)System.out.print(&quot;* &quot;);System.out.println();}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>    * 
+   * * 
+  * * * 
+ * * * * 
+* * * * * </pre></div>
+</div>
+
+        </article><article class="topic reveal" style="margin:0">
+          <h3 class="topic-title"><span class="t-icon">★13</span> Hollow Pyramid</h3>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int n = 5;
+for(int i=1;i&lt;=n;i++){for(int j=1;j&lt;=n-i;j++)System.out.print(&quot; &quot;);for(int j=1;j&lt;=2*i-1;j++){if(i==n||j==1||j==2*i-1)System.out.print(&quot;*&quot;);else System.out.print(&quot; &quot;);}System.out.println();}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>    *    
+   * *   
+  *   *  
+ *     * 
+*********</pre></div>
+</div>
+
+        </article><article class="topic reveal" style="margin:0">
+          <h3 class="topic-title"><span class="t-icon">★14</span> Cross / X Pattern</h3>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int n = 5;
+for(int i=0;i&lt;n;i++){for(int j=0;j&lt;n;j++){if(j==i||j==n-1-i)System.out.print(&quot;*&quot;);else System.out.print(&quot; &quot;);}System.out.println();}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>*   *
+ * * 
+  *  
+ * * 
+*   *</pre></div>
+</div>
+
+        </article><article class="topic reveal" style="margin:0">
+          <h3 class="topic-title"><span class="t-icon">★15</span> Plus Pattern</h3>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int n = 5;
+int mid=n/2;for(int i=0;i&lt;n;i++){for(int j=0;j&lt;n;j++){if(i==mid||j==mid)System.out.print(&quot;*&quot;);else System.out.print(&quot; &quot;);}System.out.println();}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>  *  
+  *  
+*****
+  *  
+  *  </pre></div>
+</div>
+
+        </article><article class="topic reveal" style="margin:0">
+          <h3 class="topic-title"><span class="t-icon">★16</span> Hourglass</h3>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int n = 5;
+for(int i=n;i&gt;=1;i--){for(int j=i;j&lt;n;j++)System.out.print(&quot; &quot;);for(int j=1;j&lt;=i;j++)System.out.print(&quot;* &quot;);System.out.println();}
+for(int i=2;i&lt;=n;i++){for(int j=i;j&lt;n;j++)System.out.print(&quot; &quot;);for(int j=1;j&lt;=i;j++)System.out.print(&quot;* &quot;);System.out.println();}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>* * * * * 
+ * * * * 
+  * * * 
+   * * 
+    * 
+   * * 
+  * * * 
+ * * * * 
+* * * * * </pre></div>
+</div>
+
+        </article><article class="topic reveal" style="margin:0">
+          <h3 class="topic-title"><span class="t-icon">★17</span> Right Pascal</h3>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int n = 5;
+for(int i=1;i&lt;=n;i++){for(int j=1;j&lt;=i;j++)System.out.print(&quot;* &quot;);System.out.println();}
+for(int i=n-1;i&gt;=1;i--){for(int j=1;j&lt;=i;j++)System.out.print(&quot;* &quot;);System.out.println();}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>* 
+* * 
+* * * 
+* * * * 
+* * * * * 
+* * * * 
+* * * 
+* * 
+* </pre></div>
+</div>
+
+        </article><article class="topic reveal" style="margin:0">
+          <h3 class="topic-title"><span class="t-icon">★18</span> Number Pyramid</h3>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int n = 5;
+for(int i=1;i&lt;=n;i++){for(int j=1;j&lt;=n-i;j++)System.out.print(&quot; &quot;);for(int j=1;j&lt;=i;j++)System.out.print(j+&quot; &quot;);System.out.println();}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>    1
+   1 2
+  1 2 3
+ 1 2 3 4
+1 2 3 4 5</pre></div>
+</div>
+
+        </article><article class="topic reveal" style="margin:0">
+          <h3 class="topic-title"><span class="t-icon">★19</span> Binary Triangle</h3>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int n = 5;
+for(int i=1;i&lt;=n;i++){for(int j=0;j&lt;i;j++)System.out.print(((j+i)%2)+&quot; &quot;);System.out.println();}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>1
+0 1
+1 0 1
+0 1 0 1
+1 0 1 0 1</pre></div>
+</div>
+
+        </article><article class="topic reveal" style="margin:0">
+          <h3 class="topic-title"><span class="t-icon">★20</span> Rhombus</h3>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int n = 5;
+for(int i=0;i&lt;n;i++){for(int j=0;j&lt;n-i-1;j++)System.out.print(&quot; &quot;);for(int j=0;j&lt;n;j++)System.out.print(&quot;* &quot;);System.out.println();}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>    * * * * * 
+   * * * * * 
+  * * * * * 
+ * * * * * 
+* * * * * </pre></div>
+</div>
+
+        </article><article class="topic reveal" style="margin:0">
+          <h3 class="topic-title"><span class="t-icon">★21</span> Right Arrow</h3>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int n = 5;
+for(int i=1;i&lt;=n;i++){for(int j=0;j&lt;i;j++)System.out.print(&quot;* &quot;);System.out.println();}
+for(int i=n-1;i&gt;=1;i--){for(int j=0;j&lt;i;j++)System.out.print(&quot;* &quot;);System.out.println();}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>* 
+* * 
+* * * 
+* * * * 
+* * * * * 
+* * * * 
+* * * 
+* * 
+* </pre></div>
+</div>
+
+        </article><article class="topic reveal" style="margin:0">
+          <h3 class="topic-title"><span class="t-icon">★22</span> Sandglass Numbers</h3>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>int n = 5;
+for(int i=n;i&gt;=1;i--){for(int j=1;j&lt;=n-i;j++)System.out.print(&quot; &quot;);for(int j=1;j&lt;=i;j++)System.out.print(j+&quot; &quot;);System.out.println();}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>1 2 3 4 5
+ 1 2 3 4
+  1 2 3
+   1 2
+    1</pre></div>
+</div>
+
+        </article></div></div></section><section class="section" id="oop"><div class="container"><div class="section-head reveal"><div class="tag">🎯 Chapter 7</div><h2>Object-Oriented <span class="grad">Programming</span></h2><p>The heart of Java — model real-world things as classes & objects.</p></div>
+<article class="topic" id="t-what-is-oops---intro---importance">
+  <h3 class="topic-title"><span class="t-icon">▣</span> What is OOPs? (Intro &amp; Importance)</h3>
+  <div class="def"><b>Definition:</b> OOP is a paradigm where code is organized around objects (data + behavior) instead of functions and logic alone. Pillars: Encapsulation, Inheritance, Polymorphism, Abstraction.</div>
+  <div class="usec"><b>Use case:</b> Easier to maintain, scale, reuse — used in banking, e-commerce, OS, games, Android.</div>
+  
+  
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>// Without OOP: scattered variables &amp; functions.
+// With OOP: a &#x27;Car&#x27; object that has color, speed AND start(), brake() behavior.
+class Car {
+  String color; int speed;
+  void start(){ System.out.println(color+&quot; car started&quot;); }
+}
+public class T{
+  public static void main(String[] a){
+    Car c=new Car(); c.color=&quot;Red&quot;; c.speed=120; c.start();
+  }
+}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>Red car started</pre></div>
+</div>
+
+</article>
+
+<article class="topic" id="t-class---object">
+  <h3 class="topic-title"><span class="t-icon">▣</span> Class &amp; Object</h3>
+  <div class="def"><b>Definition:</b> Class = blueprint. Object = real instance created from that blueprint.</div>
+  <div class="usec"><b>Use case:</b> One Student class → thousands of student objects in college DB.</div>
+  
+  
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>class Student {
+  String name; int roll;
+  void show(){ System.out.println(roll+&quot; - &quot;+name); }
+}
+public class Demo{
+  public static void main(String[] a){
+    Student s1=new Student(); s1.name=&quot;Aman&quot;; s1.roll=1; s1.show();
+    Student s2=new Student(); s2.name=&quot;Riya&quot;; s2.roll=2; s2.show();
+  }
+}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>1 - Aman
+2 - Riya</pre></div>
+</div>
+
+</article>
+
+<article class="topic" id="t-inheritance---its-types">
+  <h3 class="topic-title"><span class="t-icon">▣</span> Inheritance &amp; Its Types</h3>
+  <div class="def"><b>Definition:</b> Acquire properties of one class into another using 'extends' — promotes reusability.</div>
+  <div class="usec"><b>Use case:</b> Vehicle → Car → SportsCar; Employee → Manager → CEO.</div>
+  
+  
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>/* Types in Java:
+   1) Single        : A -&gt; B
+   2) Multilevel    : A -&gt; B -&gt; C
+   3) Hierarchical  : A -&gt; B, A -&gt; C
+   (Multiple via classes is NOT supported, use interfaces.)
+*/
+class Animal { void eat(){ System.out.println(&quot;eats&quot;); } }
+class Dog extends Animal { void bark(){ System.out.println(&quot;barks&quot;); } }   // Single
+class Puppy extends Dog { void weep(){ System.out.println(&quot;weeps&quot;); } }    // Multilevel
+class Cat extends Animal { void meow(){ System.out.println(&quot;meows&quot;); } }   // Hierarchical (with Dog)
+
+public class T{
+  public static void main(String[] a){
+    Puppy p=new Puppy(); p.eat(); p.bark(); p.weep();
+    new Cat().meow();
+  }
+}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>eats
+barks
+weeps
+meows</pre></div>
+</div>
+
+</article>
+
+<article class="topic" id="t-constructor---destructor">
+  <h3 class="topic-title"><span class="t-icon">▣</span> Constructor &amp; Destructor</h3>
+  <div class="def"><b>Definition:</b> Constructor: special method called when object is created (same name as class). Java has no explicit destructor — Garbage Collector handles cleanup; finalize() existed but is deprecated.</div>
+  <div class="usec"><b>Use case:</b> Initialize fields (DB connections, defaults), release resources via try-with-resources.</div>
+  
+  
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>class Box {
+  int w,h;
+  Box(){ w=1; h=1; System.out.println(&quot;default ctor&quot;); }      // default
+  Box(int w,int h){ this.w=w; this.h=h; System.out.println(&quot;param ctor &quot;+w+&quot;x&quot;+h); } // parameterized
+  Box(Box b){ this.w=b.w; this.h=b.h; System.out.println(&quot;copy ctor&quot;); }              // copy
+
+  // &quot;destructor&quot; equivalent
+  @Override protected void finalize(){ System.out.println(&quot;cleanup &quot;+w+&quot;x&quot;+h); }
+}
+public class T{
+  public static void main(String[] a){
+    Box b1=new Box();
+    Box b2=new Box(4,5);
+    Box b3=new Box(b2);
+  }
+}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>default ctor
+param ctor 4x5
+copy ctor</pre></div>
+</div>
+
+</article>
+
+<article class="topic" id="t-encapsulation---data-hiding">
+  <h3 class="topic-title"><span class="t-icon">▣</span> Encapsulation &amp; Data Hiding</h3>
+  <div class="def"><b>Definition:</b> Wrapping data and methods inside a class and restricting direct access using 'private' + getters/setters.</div>
+  <div class="usec"><b>Use case:</b> Protect bank balance, password, salary — only allow controlled access.</div>
+  
+  
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>class Account {
+  private double balance;     // hidden
+  public void deposit(double a){ if(a&gt;0) balance+=a; }
+  public double getBalance(){ return balance; }
+}
+public class T{
+  public static void main(String[] a){
+    Account ac=new Account();
+    ac.deposit(5000);
+    // ac.balance = -1000;  // ❌ not allowed
+    System.out.println(&quot;Balance: &quot;+ac.getBalance());
+  }
+}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>Balance: 5000.0</pre></div>
+</div>
+
+</article>
+
+<article class="topic" id="t-polymorphism---its-types">
+  <h3 class="topic-title"><span class="t-icon">▣</span> Polymorphism &amp; Its Types</h3>
+  <div class="def"><b>Definition:</b> One name, many forms. Two types: Compile-time (Method Overloading) and Runtime (Method Overriding).</div>
+  <div class="usec"><b>Use case:</b> Same draw() works for Circle, Square, Triangle. Same pay() for CreditCard, UPI, Cash.</div>
+  
+  
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>// 1) Compile-time (Overloading)
+class Calc {
+  int add(int a,int b){ return a+b; }
+  double add(double a,double b){ return a+b; }
+  int add(int a,int b,int c){ return a+b+c; }
+}
+
+// 2) Runtime (Overriding)
+class Shape { void draw(){ System.out.println(&quot;Shape&quot;); } }
+class Circle extends Shape { @Override void draw(){ System.out.println(&quot;Circle&quot;); } }
+class Square extends Shape { @Override void draw(){ System.out.println(&quot;Square&quot;); } }
+
+public class T{
+  public static void main(String[] a){
+    Calc c=new Calc();
+    System.out.println(c.add(2,3));
+    System.out.println(c.add(2.5,3.5));
+    System.out.println(c.add(1,2,3));
+
+    Shape s; s=new Circle(); s.draw(); s=new Square(); s.draw();
+  }
+}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>5
+6.0
+6
+Circle
+Square</pre></div>
+</div>
+
+</article>
+
+<article class="topic" id="t-abstraction--abstract-class---interface">
+  <h3 class="topic-title"><span class="t-icon">▣</span> Abstraction (abstract class &amp; interface)</h3>
+  <div class="def"><b>Definition:</b> Hide implementation, show only essentials. Achieved via abstract classes & interfaces.</div>
+  <div class="usec"><b>Use case:</b> API design — 'what' a class does, not 'how'.</div>
+  
+  
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>abstract class Payment { abstract void pay(double amt); }
+class UPI extends Payment { void pay(double a){ System.out.println(&quot;UPI ₹&quot;+a); } }
+class Card extends Payment { void pay(double a){ System.out.println(&quot;Card ₹&quot;+a); } }
+public class T{
+  public static void main(String[] a){
+    Payment p = new UPI(); p.pay(499);
+    p = new Card(); p.pay(1299);
+  }
+}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>UPI ₹499.0
+Card ₹1299.0</pre></div>
+</div>
+
+</article>
+</div></section><section class="section" id="strcoll"><div class="container"><div class="section-head reveal"><div class="tag">🧵 Chapter 8</div><h2>Strings & <span class="grad">Collections</span></h2></div>
+<article class="topic" id="t-string-manipulation---types">
+  <h3 class="topic-title"><span class="t-icon">▣</span> String Manipulation &amp; Types</h3>
+  <div class="def"><b>Definition:</b> String (immutable), StringBuilder (mutable, fast, non-thread-safe), StringBuffer (mutable, thread-safe).</div>
+  <div class="usec"><b>Use case:</b> Process names, parse JSON, build SQL, manipulate file paths.</div>
+  
+  
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public class StrDemo{
+  public static void main(String[] a){
+    String s=&quot;Hello Java&quot;;
+    System.out.println(s.length());
+    System.out.println(s.toUpperCase());
+    System.out.println(s.toLowerCase());
+    System.out.println(s.substring(6));
+    System.out.println(s.replace(&quot;Java&quot;,&quot;World&quot;));
+    System.out.println(s.contains(&quot;Java&quot;));
+    System.out.println(s.indexOf(&#x27;J&#x27;));
+    String[] parts = s.split(&quot; &quot;);
+    for(String p:parts) System.out.println(p);
+
+    StringBuilder sb=new StringBuilder(&quot;Hi&quot;);
+    sb.append(&quot; there&quot;).insert(0,&quot;&gt;&gt; &quot;).reverse();
+    System.out.println(sb);
+  }
+}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>10
+HELLO JAVA
+hello java
+Java
+Hello World
+true
+6
+Hello
+Java
+ereht iH &lt;&lt;</pre></div>
+</div>
+
+</article>
+
+<article class="topic" id="t-collection-framework---full-overview">
+  <h3 class="topic-title"><span class="t-icon">▣</span> Collection Framework — Full Overview</h3>
+  <div class="def"><b>Definition:</b> Unified architecture for storing & manipulating groups of objects: List, Set, Queue, Deque, Map.</div>
+  <div class="usec"><b>Use case:</b> Almost every real Java app uses ArrayList, HashMap, HashSet daily.</div>
+  
+  
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>import java.util.*;
+public class CollDemo{
+  public static void main(String[] a){
+    // LIST (ordered, allows duplicates)
+    List&lt;String&gt; list=new ArrayList&lt;&gt;();
+    list.add(&quot;A&quot;); list.add(&quot;B&quot;); list.add(&quot;A&quot;);
+    System.out.println(&quot;List : &quot;+list);
+
+    // SET (unique)
+    Set&lt;String&gt; set=new HashSet&lt;&gt;(list);
+    System.out.println(&quot;Set  : &quot;+set);
+
+    // QUEUE (FIFO)
+    Queue&lt;Integer&gt; q=new LinkedList&lt;&gt;();
+    q.offer(1); q.offer(2); q.offer(3);
+    System.out.println(&quot;Poll : &quot;+q.poll());
+
+    // DEQUE / STACK
+    Deque&lt;Integer&gt; st=new ArrayDeque&lt;&gt;();
+    st.push(10); st.push(20); System.out.println(&quot;Top  : &quot;+st.peek());
+
+    // MAP (key-&gt;value)
+    Map&lt;String,Integer&gt; map=new HashMap&lt;&gt;();
+    map.put(&quot;Aman&quot;,90); map.put(&quot;Riya&quot;,95);
+    System.out.println(&quot;Map  : &quot;+map);
+
+    // TreeMap (sorted)
+    Map&lt;String,Integer&gt; tm=new TreeMap&lt;&gt;(map);
+    System.out.println(&quot;Tree : &quot;+tm);
+  }
+}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>List : [A, B, A]
+Set  : [A, B]
+Poll : 1
+Top  : 20
+Map  : {Riya=95, Aman=90}
+Tree : {Aman=90, Riya=95}</pre></div>
+</div>
+
+</article>
+<article class="topic reveal"><h3 class="topic-title"><span class="t-icon">▣</span> Collection Types — Quick Reference</h3><table class="tbl"><thead><tr><th>Interface</th><th>Implementation</th><th>Use Case</th></tr></thead><tbody>
+<tr><td>List</td><td>ArrayList, LinkedList, Vector</td><td>Ordered data, indexed access</td></tr>
+<tr><td>Set</td><td>HashSet, LinkedHashSet, TreeSet</td><td>Unique items</td></tr>
+<tr><td>Queue</td><td>LinkedList, PriorityQueue</td><td>FIFO / priority</td></tr>
+<tr><td>Deque</td><td>ArrayDeque</td><td>Stack & double-ended queue</td></tr>
+<tr><td>Map</td><td>HashMap, LinkedHashMap, TreeMap, ConcurrentHashMap</td><td>Key→Value lookup</td></tr>
+</tbody></table></article></div></section><section class="section" id="dsa"><div class="container"><div class="section-head reveal"><div class="tag">⚔ DSA Vault</div><h2>52+ DSA <span class="grad">Problems</span></h2><p>Definition · Logic · Code — the must-do problems for every Java interview.</p></div><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D01</span> Reverse a String</h3>
+          <div class="def"><b>Definition:</b> Reverse the characters of a given string.</div>
+          <div class="usec"><b>Logic:</b> Two-pointer swap from both ends until they meet.</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public static String reverse(String s){
+  char[] a=s.toCharArray();int i=0,j=a.length-1;
+  while(i&lt;j){char t=a[i];a[i]=a[j];a[j]=t;i++;j--;}
+  return new String(a);
+}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D02</span> Check Palindrome</h3>
+          <div class="def"><b>Definition:</b> Check if a string reads same forward/backward.</div>
+          <div class="usec"><b>Logic:</b> Two pointers compare chars from ends.</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public static boolean isPalin(String s){int i=0,j=s.length()-1;while(i&lt;j){if(s.charAt(i++)!=s.charAt(j--))return false;}return true;}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D03</span> Factorial (Recursion)</h3>
+          <div class="def"><b>Definition:</b> n! = n*(n-1)*...*1.</div>
+          <div class="usec"><b>Logic:</b> Recursive multiplication.</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public static long fact(int n){return n&lt;=1?1:n*fact(n-1);}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D04</span> Fibonacci Series</h3>
+          <div class="def"><b>Definition:</b> 0,1,1,2,3,5,8...</div>
+          <div class="usec"><b>Logic:</b> Iterative add.</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public static void fib(int n){int a=0,b=1;for(int i=0;i&lt;n;i++){System.out.print(a+&quot; &quot;);int c=a+b;a=b;b=c;}}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D05</span> Prime Check</h3>
+          <div class="def"><b>Definition:</b> Number divisible only by 1 and itself.</div>
+          <div class="usec"><b>Logic:</b> Loop till sqrt(n).</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public static boolean isPrime(int n){if(n&lt;2)return false;for(int i=2;i*i&lt;=n;i++)if(n%i==0)return false;return true;}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D06</span> GCD (Euclid)</h3>
+          <div class="def"><b>Definition:</b> Greatest Common Divisor.</div>
+          <div class="usec"><b>Logic:</b> Recursion using mod.</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public static int gcd(int a,int b){return b==0?a:gcd(b,a%b);}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D07</span> LCM</h3>
+          <div class="def"><b>Definition:</b> Least Common Multiple.</div>
+          <div class="usec"><b>Logic:</b> a*b/gcd.</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public static int lcm(int a,int b){return a*b/gcd(a,b);}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D08</span> Reverse Number</h3>
+          <div class="def"><b>Definition:</b> Reverse digits of integer.</div>
+          <div class="usec"><b>Logic:</b> Mod and divide loop.</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public static int rev(int n){int r=0;while(n&gt;0){r=r*10+n%10;n/=10;}return r;}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D09</span> Armstrong Number</h3>
+          <div class="def"><b>Definition:</b> Sum of cubes of digits = number.</div>
+          <div class="usec"><b>Logic:</b> Digit extract + cube.</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public static boolean arm(int n){int s=0,t=n;while(t&gt;0){int d=t%10;s+=d*d*d;t/=10;}return s==n;}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D10</span> Sum of Digits</h3>
+          <div class="def"><b>Definition:</b> Add all digits of n.</div>
+          <div class="usec"><b>Logic:</b> Mod and divide.</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public static int sum(int n){int s=0;while(n&gt;0){s+=n%10;n/=10;}return s;}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D11</span> Linear Search</h3>
+          <div class="def"><b>Definition:</b> Sequential check.</div>
+          <div class="usec"><b>Logic:</b> O(n) loop.</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public static int lin(int[] a,int x){for(int i=0;i&lt;a.length;i++)if(a[i]==x)return i;return -1;}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D12</span> Binary Search</h3>
+          <div class="def"><b>Definition:</b> Halving search on sorted array.</div>
+          <div class="usec"><b>Logic:</b> O(log n).</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public static int bin(int[] a,int x){int l=0,r=a.length-1;while(l&lt;=r){int m=(l+r)/2;if(a[m]==x)return m;if(a[m]&lt;x)l=m+1;else r=m-1;}return -1;}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D13</span> Bubble Sort</h3>
+          <div class="def"><b>Definition:</b> Repeatedly swap adjacent.</div>
+          <div class="usec"><b>Logic:</b> O(n^2).</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public static void bubble(int[] a){for(int i=0;i&lt;a.length-1;i++)for(int j=0;j&lt;a.length-1-i;j++)if(a[j]&gt;a[j+1]){int t=a[j];a[j]=a[j+1];a[j+1]=t;}}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D14</span> Selection Sort</h3>
+          <div class="def"><b>Definition:</b> Pick min, place left.</div>
+          <div class="usec"><b>Logic:</b> O(n^2).</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public static void sel(int[] a){for(int i=0;i&lt;a.length;i++){int m=i;for(int j=i+1;j&lt;a.length;j++)if(a[j]&lt;a[m])m=j;int t=a[i];a[i]=a[m];a[m]=t;}}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D15</span> Insertion Sort</h3>
+          <div class="def"><b>Definition:</b> Insert into sorted prefix.</div>
+          <div class="usec"><b>Logic:</b> O(n^2).</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public static void ins(int[] a){for(int i=1;i&lt;a.length;i++){int k=a[i],j=i-1;while(j&gt;=0&amp;&amp;a[j]&gt;k){a[j+1]=a[j];j--;}a[j+1]=k;}}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D16</span> Merge Sort</h3>
+          <div class="def"><b>Definition:</b> Divide and merge.</div>
+          <div class="usec"><b>Logic:</b> O(n log n).</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public static void merge(int[] a,int l,int r){if(l&lt;r){int m=(l+r)/2;merge(a,l,m);merge(a,m+1,r);mergeArr(a,l,m,r);}}
+public static void mergeArr(int[] a,int l,int m,int r){int n1=m-l+1,n2=r-m;int[] L=new int[n1],R=new int[n2];for(int i=0;i&lt;n1;i++)L[i]=a[l+i];for(int j=0;j&lt;n2;j++)R[j]=a[m+1+j];int i=0,j=0,k=l;while(i&lt;n1&amp;&amp;j&lt;n2){if(L[i]&lt;=R[j])a[k++]=L[i++];else a[k++]=R[j++];}while(i&lt;n1)a[k++]=L[i++];while(j&lt;n2)a[k++]=R[j++];}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D17</span> Quick Sort</h3>
+          <div class="def"><b>Definition:</b> Partition around pivot.</div>
+          <div class="usec"><b>Logic:</b> O(n log n) avg.</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public static void qs(int[] a,int l,int r){if(l&lt;r){int p=part(a,l,r);qs(a,l,p-1);qs(a,p+1,r);}}
+public static int part(int[] a,int l,int r){int p=a[r],i=l-1;for(int j=l;j&lt;r;j++)if(a[j]&lt;=p){i++;int t=a[i];a[i]=a[j];a[j]=t;}int t=a[i+1];a[i+1]=a[r];a[r]=t;return i+1;}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D18</span> Find Max</h3>
+          <div class="def"><b>Definition:</b> Largest element.</div>
+          <div class="usec"><b>Logic:</b> Linear scan.</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public static int max(int[] a){int m=a[0];for(int x:a)if(x&gt;m)m=x;return m;}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D19</span> Find Min</h3>
+          <div class="def"><b>Definition:</b> Smallest.</div>
+          <div class="usec"><b>Logic:</b> Linear scan.</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public static int min(int[] a){int m=a[0];for(int x:a)if(x&lt;m)m=x;return m;}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D20</span> Second Largest</h3>
+          <div class="def"><b>Definition:</b> Second max in array.</div>
+          <div class="usec"><b>Logic:</b> Two trackers.</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public static int sec(int[] a){int f=Integer.MIN_VALUE,s=Integer.MIN_VALUE;for(int x:a){if(x&gt;f){s=f;f=x;}else if(x&gt;s&amp;&amp;x&lt;f)s=x;}return s;}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D21</span> Remove Duplicates</h3>
+          <div class="def"><b>Definition:</b> Remove repeated elements.</div>
+          <div class="usec"><b>Logic:</b> Use LinkedHashSet.</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public static int[] dedupe(int[] a){java.util.LinkedHashSet&lt;Integer&gt; s=new java.util.LinkedHashSet&lt;&gt;();for(int x:a)s.add(x);return s.stream().mapToInt(Integer::intValue).toArray();}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D22</span> Anagram Check</h3>
+          <div class="def"><b>Definition:</b> Same letters different order.</div>
+          <div class="usec"><b>Logic:</b> Sort and compare.</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public static boolean ana(String a,String b){if(a.length()!=b.length())return false;char[] x=a.toCharArray(),y=b.toCharArray();java.util.Arrays.sort(x);java.util.Arrays.sort(y);return java.util.Arrays.equals(x,y);}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D23</span> Count Vowels</h3>
+          <div class="def"><b>Definition:</b> Count a/e/i/o/u.</div>
+          <div class="usec"><b>Logic:</b> Loop check.</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public static int vow(String s){int c=0;for(char ch:s.toLowerCase().toCharArray())if(&quot;aeiou&quot;.indexOf(ch)&gt;=0)c++;return c;}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D24</span> Matrix Transpose</h3>
+          <div class="def"><b>Definition:</b> Swap rows/cols.</div>
+          <div class="usec"><b>Logic:</b> Nested loop.</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public static int[][] tr(int[][] m){int r=m.length,c=m[0].length;int[][] t=new int[c][r];for(int i=0;i&lt;r;i++)for(int j=0;j&lt;c;j++)t[j][i]=m[i][j];return t;}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D25</span> Matrix Multiplication</h3>
+          <div class="def"><b>Definition:</b> Row x Col sum.</div>
+          <div class="usec"><b>Logic:</b> Triple loop.</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public static int[][] mul(int[][] a,int[][] b){int n=a.length,m=b[0].length,p=b.length;int[][] c=new int[n][m];for(int i=0;i&lt;n;i++)for(int j=0;j&lt;m;j++)for(int k=0;k&lt;p;k++)c[i][j]+=a[i][k]*b[k][j];return c;}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D26</span> Reverse Linked List</h3>
+          <div class="def"><b>Definition:</b> Flip pointers.</div>
+          <div class="usec"><b>Logic:</b> Iterative prev/curr.</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>class Node{int v;Node n;Node(int v){this.v=v;}}
+public static Node rev(Node h){Node p=null,c=h;while(c!=null){Node nx=c.n;c.n=p;p=c;c=nx;}return p;}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D27</span> Detect Cycle in LL</h3>
+          <div class="def"><b>Definition:</b> Floyd&#x27;s tortoise &amp; hare.</div>
+          <div class="usec"><b>Logic:</b> Two pointers.</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public static boolean cycle(Node h){Node s=h,f=h;while(f!=null&amp;&amp;f.n!=null){s=s.n;f=f.n.n;if(s==f)return true;}return false;}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D28</span> Stack using Array</h3>
+          <div class="def"><b>Definition:</b> LIFO data structure.</div>
+          <div class="usec"><b>Logic:</b> Push/pop on top index.</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>class Stk{int[] a=new int[100];int t=-1;void push(int x){a[++t]=x;}int pop(){return a[t--];}int peek(){return a[t];}}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D29</span> Queue using Array</h3>
+          <div class="def"><b>Definition:</b> FIFO data structure.</div>
+          <div class="usec"><b>Logic:</b> Front/rear pointers.</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>class Q{int[] a=new int[100];int f=0,r=0;void enq(int x){a[r++]=x;}int deq(){return a[f++];}}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D30</span> Binary Tree Inorder</h3>
+          <div class="def"><b>Definition:</b> Left-Root-Right traversal.</div>
+          <div class="usec"><b>Logic:</b> Recursion.</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>class T{int v;T l,r;T(int v){this.v=v;}}
+public static void in(T n){if(n==null)return;in(n.l);System.out.print(n.v+&quot; &quot;);in(n.r);}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D31</span> BFS on Graph</h3>
+          <div class="def"><b>Definition:</b> Level-order traversal.</div>
+          <div class="usec"><b>Logic:</b> Queue.</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public static void bfs(int s,java.util.List&lt;java.util.List&lt;Integer&gt;&gt; g){boolean[] v=new boolean[g.size()];java.util.Queue&lt;Integer&gt; q=new java.util.LinkedList&lt;&gt;();q.add(s);v[s]=true;while(!q.isEmpty()){int x=q.poll();System.out.print(x+&quot; &quot;);for(int n:g.get(x))if(!v[n]){v[n]=true;q.add(n);}}}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D32</span> DFS on Graph</h3>
+          <div class="def"><b>Definition:</b> Depth-first.</div>
+          <div class="usec"><b>Logic:</b> Recursion+visited.</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public static void dfs(int s,boolean[] v,java.util.List&lt;java.util.List&lt;Integer&gt;&gt; g){v[s]=true;System.out.print(s+&quot; &quot;);for(int n:g.get(s))if(!v[n])dfs(n,v,g);}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D33</span> Power (a^b)</h3>
+          <div class="def"><b>Definition:</b> Compute a to the b.</div>
+          <div class="usec"><b>Logic:</b> Fast exponent.</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public static long pow(long a,long b){long r=1;while(b&gt;0){if((b&amp;1)==1)r*=a;a*=a;b&gt;&gt;=1;}return r;}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D34</span> Count Bits</h3>
+          <div class="def"><b>Definition:</b> Number of 1 bits.</div>
+          <div class="usec"><b>Logic:</b> Brian Kernighan.</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public static int bits(int n){int c=0;while(n!=0){n&amp;=n-1;c++;}return c;}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D35</span> Two Sum</h3>
+          <div class="def"><b>Definition:</b> Find indices summing to target.</div>
+          <div class="usec"><b>Logic:</b> HashMap.</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public static int[] two(int[] a,int t){java.util.HashMap&lt;Integer,Integer&gt; m=new java.util.HashMap&lt;&gt;();for(int i=0;i&lt;a.length;i++){int c=t-a[i];if(m.containsKey(c))return new int[]{m.get(c),i};m.put(a[i],i);}return new int[]{-1,-1};}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D36</span> Kadane&#x27;s Max Subarray</h3>
+          <div class="def"><b>Definition:</b> Max sum subarray.</div>
+          <div class="usec"><b>Logic:</b> Running sum reset.</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public static int kad(int[] a){int s=a[0],m=a[0];for(int i=1;i&lt;a.length;i++){s=Math.max(a[i],s+a[i]);m=Math.max(m,s);}return m;}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D37</span> Sliding Window Max Sum K</h3>
+          <div class="def"><b>Definition:</b> Max sum of k window.</div>
+          <div class="usec"><b>Logic:</b> Window slide.</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public static int win(int[] a,int k){int s=0;for(int i=0;i&lt;k;i++)s+=a[i];int m=s;for(int i=k;i&lt;a.length;i++){s+=a[i]-a[i-k];m=Math.max(m,s);}return m;}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D38</span> Find Missing Number</h3>
+          <div class="def"><b>Definition:</b> 1..n missing.</div>
+          <div class="usec"><b>Logic:</b> Sum formula.</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public static int miss(int[] a,int n){int s=n*(n+1)/2;for(int x:a)s-=x;return s;}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D39</span> Move Zeros to End</h3>
+          <div class="def"><b>Definition:</b> Keep order, zeros last.</div>
+          <div class="usec"><b>Logic:</b> Two pointers.</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public static void mz(int[] a){int j=0;for(int i=0;i&lt;a.length;i++)if(a[i]!=0)a[j++]=a[i];while(j&lt;a.length)a[j++]=0;}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D40</span> Rotate Array by K</h3>
+          <div class="def"><b>Definition:</b> Cyclic shift.</div>
+          <div class="usec"><b>Logic:</b> Reverse trick.</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public static void rot(int[] a,int k){k%=a.length;rev(a,0,a.length-1);rev(a,0,k-1);rev(a,k,a.length-1);}
+static void rev(int[] a,int l,int r){while(l&lt;r){int t=a[l];a[l]=a[r];a[r]=t;l++;r--;}}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D41</span> Valid Parentheses</h3>
+          <div class="def"><b>Definition:</b> Balanced brackets.</div>
+          <div class="usec"><b>Logic:</b> Stack.</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public static boolean valid(String s){java.util.Deque&lt;Character&gt; st=new java.util.ArrayDeque&lt;&gt;();for(char c:s.toCharArray()){if(c==&#x27;(&#x27;||c==&#x27;[&#x27;||c==&#x27;{&#x27;)st.push(c);else{if(st.isEmpty())return false;char t=st.pop();if(c==&#x27;)&#x27;&amp;&amp;t!=&#x27;(&#x27;||c==&#x27;]&#x27;&amp;&amp;t!=&#x27;[&#x27;||c==&#x27;}&#x27;&amp;&amp;t!=&#x27;{&#x27;)return false;}}return st.isEmpty();}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D42</span> Longest Common Prefix</h3>
+          <div class="def"><b>Definition:</b> Common starting chars.</div>
+          <div class="usec"><b>Logic:</b> Vertical scan.</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public static String lcp(String[] s){if(s.length==0)return &quot;&quot;;String p=s[0];for(int i=1;i&lt;s.length;i++)while(s[i].indexOf(p)!=0){p=p.substring(0,p.length()-1);if(p.isEmpty())return &quot;&quot;;}return p;}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D43</span> First Non-Repeating Char</h3>
+          <div class="def"><b>Definition:</b> First unique char.</div>
+          <div class="usec"><b>Logic:</b> Frequency map.</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public static char firstUnique(String s){int[] f=new int[256];for(char c:s.toCharArray())f[c]++;for(char c:s.toCharArray())if(f[c]==1)return c;return &#x27;_&#x27;;}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D44</span> Find Duplicate</h3>
+          <div class="def"><b>Definition:</b> Repeated number.</div>
+          <div class="usec"><b>Logic:</b> HashSet.</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public static int dup(int[] a){java.util.HashSet&lt;Integer&gt; s=new java.util.HashSet&lt;&gt;();for(int x:a)if(!s.add(x))return x;return -1;}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D45</span> Climbing Stairs (DP)</h3>
+          <div class="def"><b>Definition:</b> Ways to reach nth stair.</div>
+          <div class="usec"><b>Logic:</b> Fib pattern.</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public static int climb(int n){if(n&lt;=2)return n;int a=1,b=2;for(int i=3;i&lt;=n;i++){int c=a+b;a=b;b=c;}return b;}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D46</span> 0/1 Knapsack (DP)</h3>
+          <div class="def"><b>Definition:</b> Max value within weight W.</div>
+          <div class="usec"><b>Logic:</b> 2D DP.</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public static int knap(int[] w,int[] v,int W){int n=w.length;int[][] d=new int[n+1][W+1];for(int i=1;i&lt;=n;i++)for(int j=0;j&lt;=W;j++){d[i][j]=d[i-1][j];if(w[i-1]&lt;=j)d[i][j]=Math.max(d[i][j],d[i-1][j-w[i-1]]+v[i-1]);}return d[n][W];}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D47</span> Longest Increasing Subseq</h3>
+          <div class="def"><b>Definition:</b> LIS length.</div>
+          <div class="usec"><b>Logic:</b> DP O(n^2).</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public static int lis(int[] a){int n=a.length;int[] d=new int[n];int max=1;for(int i=0;i&lt;n;i++){d[i]=1;for(int j=0;j&lt;i;j++)if(a[j]&lt;a[i])d[i]=Math.max(d[i],d[j]+1);max=Math.max(max,d[i]);}return max;}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D48</span> Coin Change</h3>
+          <div class="def"><b>Definition:</b> Min coins for amount.</div>
+          <div class="usec"><b>Logic:</b> DP.</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public static int coin(int[] c,int a){int[] d=new int[a+1];java.util.Arrays.fill(d,a+1);d[0]=0;for(int i=1;i&lt;=a;i++)for(int x:c)if(x&lt;=i)d[i]=Math.min(d[i],d[i-x]+1);return d[a]&gt;a?-1:d[a];}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D49</span> N-Queens (Backtrack)</h3>
+          <div class="def"><b>Definition:</b> Place N queens.</div>
+          <div class="usec"><b>Logic:</b> Backtracking.</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public static int nq(int n){return solve(0,new int[n],n);}
+static int solve(int r,int[] q,int n){if(r==n)return 1;int c=0;for(int i=0;i&lt;n;i++){q[r]=i;boolean ok=true;for(int j=0;j&lt;r;j++)if(q[j]==i||Math.abs(q[j]-i)==r-j){ok=false;break;}if(ok)c+=solve(r+1,q,n);}return c;}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D50</span> Sudoku Validator</h3>
+          <div class="def"><b>Definition:</b> Is row/col/box valid.</div>
+          <div class="usec"><b>Logic:</b> Use sets.</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public static boolean sudo(char[][] b){java.util.Set&lt;String&gt; s=new java.util.HashSet&lt;&gt;();for(int i=0;i&lt;9;i++)for(int j=0;j&lt;9;j++){char c=b[i][j];if(c!=&#x27;.&#x27;){if(!s.add(c+&quot;r&quot;+i)||!s.add(c+&quot;c&quot;+j)||!s.add(c+&quot;b&quot;+i/3+j/3))return false;}}return true;}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D51</span> Heap Sort</h3>
+          <div class="def"><b>Definition:</b> Use max-heap.</div>
+          <div class="usec"><b>Logic:</b> Heapify + extract.</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public static void heap(int[] a){int n=a.length;for(int i=n/2-1;i&gt;=0;i--)heapify(a,n,i);for(int i=n-1;i&gt;0;i--){int t=a[0];a[0]=a[i];a[i]=t;heapify(a,i,0);}}
+static void heapify(int[] a,int n,int i){int l=2*i+1,r=2*i+2,m=i;if(l&lt;n&amp;&amp;a[l]&gt;a[m])m=l;if(r&lt;n&amp;&amp;a[r]&gt;a[m])m=r;if(m!=i){int t=a[i];a[i]=a[m];a[m]=t;heapify(a,n,m);}}</code></pre>
+  
+</div>
+
+        </article><article class="topic reveal">
+          <h3 class="topic-title"><span class="t-icon">D52</span> Trie Insert/Search</h3>
+          <div class="def"><b>Definition:</b> Prefix tree.</div>
+          <div class="usec"><b>Logic:</b> Char nodes.</div>
+          
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>class Trie{Trie[] c=new Trie[26];boolean end;void ins(String s){Trie n=this;for(char x:s.toCharArray()){int i=x-&#x27;a&#x27;;if(n.c[i]==null)n.c[i]=new Trie();n=n.c[i];}n.end=true;}boolean find(String s){Trie n=this;for(char x:s.toCharArray()){int i=x-&#x27;a&#x27;;if(n.c[i]==null)return false;n=n.c[i];}return n.end;}}</code></pre>
+  
+</div>
+
+        </article></div></section><section class="section" id="advanced"><div class="container"><div class="section-head reveal"><div class="tag">🚀 Chapter 11</div><h2>Advanced <span class="grad">Java</span></h2><p>Exception handling, multithreading, JDBC, lambdas & streams, generics.</p></div>
+<article class="topic" id="t-exception-handling">
+  <h3 class="topic-title"><span class="t-icon">▣</span> Exception Handling</h3>
+  <div class="def"><b>Definition:</b> Mechanism to handle runtime errors gracefully using try-catch-finally, throw, throws.</div>
+  <div class="usec"><b>Use case:</b> Prevent app crashes — handle network failures, invalid input, file missing.</div>
+  
+  
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>public class Ex{
+  public static void main(String[] a){
+    try{
+      int x = 10/0;
+    } catch(ArithmeticException e){
+      System.out.println(&quot;Caught: &quot;+e.getMessage());
+    } finally{
+      System.out.println(&quot;Always runs&quot;);
+    }
+  }
+}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>Caught: / by zero
+Always runs</pre></div>
+</div>
+
+</article>
+
+<article class="topic" id="t-multithreading">
+  <h3 class="topic-title"><span class="t-icon">▣</span> Multithreading</h3>
+  <div class="def"><b>Definition:</b> Run multiple parts of program concurrently using Thread / Runnable / ExecutorService.</div>
+  <div class="usec"><b>Use case:</b> Background tasks, parallel processing, responsive UIs, server requests.</div>
+  
+  
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>class Hello extends Thread {
+  public void run(){ for(int i=1;i&lt;=3;i++) System.out.println(&quot;Hello &quot;+i); }
+}
+public class T{
+  public static void main(String[] a){
+    Hello h=new Hello(); h.start();
+    Runnable r = () -&gt; { for(int i=1;i&lt;=3;i++) System.out.println(&quot;World &quot;+i); };
+    new Thread(r).start();
+  }
+}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>Hello 1
+World 1
+Hello 2
+World 2
+... (interleaved)</pre></div>
+</div>
+
+</article>
+
+<article class="topic" id="t-jdbc--database-connectivity">
+  <h3 class="topic-title"><span class="t-icon">▣</span> JDBC (Database Connectivity)</h3>
+  <div class="def"><b>Definition:</b> Java API to connect & execute SQL on relational databases.</div>
+  <div class="usec"><b>Use case:</b> Login systems, e-commerce orders, banking transactions.</div>
+  
+  
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>import java.sql.*;
+public class Jdbc{
+  public static void main(String[] a) throws Exception{
+    String url=&quot;jdbc:mysql://localhost:3306/test&quot;;
+    Connection c=DriverManager.getConnection(url,&quot;root&quot;,&quot;pwd&quot;);
+    Statement st=c.createStatement();
+    ResultSet rs=st.executeQuery(&quot;SELECT id,name FROM users&quot;);
+    while(rs.next()) System.out.println(rs.getInt(1)+&quot; &quot;+rs.getString(2));
+    c.close();
+  }
+}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>1 Aman
+2 Riya
+...</pre></div>
+</div>
+
+</article>
+
+<article class="topic" id="t-lambda-expressions---streams--java-8">
+  <h3 class="topic-title"><span class="t-icon">▣</span> Lambda Expressions &amp; Streams (Java 8+)</h3>
+  <div class="def"><b>Definition:</b> Functional programming style — pass behavior as data, declarative pipelines.</div>
+  <div class="usec"><b>Use case:</b> Concise data processing, parallel streams, modern Java code.</div>
+  
+  
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>import java.util.*; import java.util.stream.*;
+public class S{
+  public static void main(String[] a){
+    List&lt;Integer&gt; nums = Arrays.asList(1,2,3,4,5,6);
+    int sumEvenSq = nums.stream()
+        .filter(n -&gt; n%2==0)
+        .mapToInt(n -&gt; n*n)
+        .sum();
+    System.out.println(sumEvenSq);
+  }
+}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>56</pre></div>
+</div>
+
+</article>
+
+<article class="topic" id="t-generics">
+  <h3 class="topic-title"><span class="t-icon">▣</span> Generics</h3>
+  <div class="def"><b>Definition:</b> Parameterized types — write reusable code that works with any type while staying type-safe.</div>
+  <div class="usec"><b>Use case:</b> Collections, custom containers, utility methods.</div>
+  
+  
+<div class="code-card">
+  <div class="code-head"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lang">Java</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+  <pre class="code"><code>class Box&lt;T&gt;{ T val; void set(T v){val=v;} T get(){return val;} }
+public class T{
+  public static void main(String[] a){
+    Box&lt;String&gt; b=new Box&lt;&gt;(); b.set(&quot;Hi&quot;); System.out.println(b.get());
+    Box&lt;Integer&gt; i=new Box&lt;&gt;(); i.set(42); System.out.println(i.get());
+  }
+}</code></pre>
+  <div class="output"><div class="out-label">Output</div><pre>Hi
+42</pre></div>
+</div>
+
+</article>
+</div></section><section class="section" id="quiz"><div class="container"><div class="section-head reveal"><div class="tag">🎮 Test Yourself</div><h2>110+ MCQ <span class="grad">Quiz</span></h2><p>Random, instant feedback, tracks score. Refresh to retake!</p></div><div class="quiz-wrap"><div class="quiz-card" id="quizCard"><div class="q-progress"><div id="qBar"></div></div><div id="qBody"></div></div></div><script>window.QUIZ_DATA = [["Who developed Java?", ["James Gosling", "Dennis Ritchie", "Guido van Rossum", "Bjarne Stroustrup"], 0], ["Java was originally called?", ["Oak", "Spice", "Green", "Maple"], 0], ["JVM stands for?", ["Java Virtual Machine", "Java Visible Memory", "Joint Virtual Module", "Just Virtual Mode"], 0], ["File extension of Java source?", [".java", ".class", ".js", ".jv"], 0], ["Compiled Java file extension?", [".class", ".java", ".exe", ".obj"], 0], ["Default value of int?", ["0", "null", "1", "-1"], 0], ["Default value of boolean?", ["false", "true", "0", "null"], 0], ["Size of int in Java?", ["4 bytes", "2 bytes", "8 bytes", "Depends"], 0], ["Which is not OOP principle?", ["Compilation", "Inheritance", "Polymorphism", "Encapsulation"], 0], ["Java is?", ["Platform Independent", "Platform Dependent", "OS specific", "Hardware specific"], 0], ["main() return type?", ["void", "int", "String", "static"], 0], ["Keyword to inherit a class?", ["extends", "implements", "inherits", "super"], 0], ["Keyword for interface?", ["implements", "extends", "interface", "abstract"], 1], ["Wrapper class of int?", ["Integer", "Int", "IntWrap", "Number"], 0], ["Operator for AND?", ["&&", "||", "!", "&"], 0], ["Loop guaranteed to run once?", ["do-while", "while", "for", "foreach"], 0], ["Single line comment?", ["//", "/* */", "#", "--"], 0], ["Java supports multiple inheritance via?", ["Interfaces", "Classes", "Abstract classes", "Packages"], 0], ["super refers to?", ["Parent class", "Same class", "Child class", "Static class"], 0], ["this refers to?", ["Current object", "Parent", "Child", "Static"], 0], ["Final class can be?", ["Not inherited", "Inherited", "Overridden", "Abstract"], 0], ["Static methods belong to?", ["Class", "Object", "Both", "None"], 0], ["Garbage collector?", ["Frees unused memory", "Allocates", "Compiles", "Links"], 0], ["Exception base class?", ["Throwable", "Error", "Exception", "RuntimeException"], 0], ["Try-catch handles?", ["Exceptions", "Loops", "Threads", "Files"], 0], ["Thread method to start?", ["start()", "run()", "exec()", "init()"], 0], ["String is in package?", ["java.lang", "java.util", "java.io", "java.net"], 0], ["Mutable string class?", ["StringBuilder", "String", "StringBuffer (sync)", "Both B & C"], 3], ["HashMap allows null keys?", ["1 null key", "No", "Multiple", "Only string"], 0], ["ArrayList is in?", ["java.util", "java.lang", "java.io", "java.sql"], 0], ["LinkedList implements?", ["List & Deque", "Map", "Set", "Queue only"], 0], ["Set does not allow?", ["Duplicates", "Order", "Nulls", "Strings"], 0], ["HashSet uses?", ["HashMap", "Tree", "Array", "List"], 0], ["Stack is?", ["LIFO", "FIFO", "Sorted", "Random"], 0], ["Queue is?", ["FIFO", "LIFO", "Random", "Sorted"], 0], ["Constructor name?", ["Same as class", "Same as method", "Always init", "Free"], 0], ["Constructor returns?", ["Nothing", "void", "int", "Object"], 0], ["Default constructor is?", ["Provided by compiler", "Manual", "Static", "Final"], 0], ["Method overloading is?", ["Compile-time", "Runtime", "Both", "None"], 0], ["Method overriding is?", ["Runtime", "Compile-time", "Both", "Static"], 0], ["abstract class can have?", ["Both abstract & concrete", "Only abstract", "Only concrete", "None"], 0], ["Interface methods (Java 7) are?", ["Public abstract", "Private", "Protected", "Static"], 0], ["Java 8 introduced?", ["Lambda", "Generics", "Annotations", "Modules"], 0], ["Functional interface has?", ["1 abstract method", "Many", "None", "Static"], 0], ["Stream API is in?", ["java.util.stream", "java.io", "java.lang", "java.net"], 0], ["Optional avoids?", ["NullPointerException", "IO error", "ArithmeticException", "StackOverflow"], 0], ["var keyword introduced?", ["Java 10", "Java 8", "Java 7", "Java 11"], 0], ["Records introduced?", ["Java 14", "Java 8", "Java 11", "Java 17"], 0], ["Module system?", ["Java 9", "Java 8", "Java 10", "Java 11"], 0], ["Sealed classes?", ["Java 17", "Java 11", "Java 14", "Java 9"], 0], ["Which is not a primitive?", ["String", "int", "char", "double"], 0], ["Char size?", ["2 bytes", "1 byte", "4 bytes", "8 bytes"], 0], ["Long size?", ["8 bytes", "4 bytes", "2 bytes", "16 bytes"], 0], ["Float default?", ["0.0f", "0", "null", "0.0"], 0], ["Bitwise XOR?", ["^", "&", "|", "~"], 0], ["Left shift?", ["<<", ">>", "<<<", ">>>"], 0], ["Unsigned right shift?", [">>>", ">>", "<<", "<<<"], 0], ["instanceof checks?", ["Type", "Value", "Length", "Hash"], 0], ["break exits?", ["Loop/switch", "Method", "Class", "Program"], 0], ["continue?", ["Skips iteration", "Exits loop", "Stops", "Pauses"], 0], ["return in void?", ["Allowed without value", "Not allowed", "Returns 0", "Throws"], 0], ["Array index starts at?", ["0", "1", "-1", "Custom"], 0], ["ArrayIndexOutOfBoundsException is?", ["Unchecked", "Checked", "Error", "Warning"], 0], ["Checked exception?", ["IOException", "NullPointer", "Arithmetic", "ArrayIndex"], 0], ["Unchecked exception base?", ["RuntimeException", "Throwable", "Error", "Exception"], 0], ["finally block?", ["Always runs", "Sometimes", "Only on error", "Never"], 0], ["throw vs throws?", ["throw raises, throws declares", "Same", "Reverse", "None"], 0], ["File class in?", ["java.io", "java.util", "java.lang", "java.nio"], 0], ["BufferedReader wraps?", ["Reader", "Writer", "Stream", "Socket"], 0], ["Serialization marker?", ["Serializable", "Cloneable", "Runnable", "Comparable"], 0], ["transient prevents?", ["Serialization", "Inheritance", "Override", "Access"], 0], ["volatile ensures?", ["Visibility", "Atomicity", "Ordering", "Locking"], 0], ["synchronized provides?", ["Mutual exclusion", "Speed", "Async", "Visibility"], 0], ["Runnable has?", ["run()", "start()", "exec()", "go()"], 0], ["Thread states include?", ["NEW, RUNNABLE, BLOCKED, ...", "Only RUN", "Active/Idle", "On/Off"], 0], ["Singleton ensures?", ["One instance", "Many instances", "No instance", "Static only"], 0], ["Factory pattern?", ["Creates objects", "Sorts", "Iterates", "Observes"], 0], ["MVC stands for?", ["Model View Controller", "Many View Calls", "Mock View Class", "Model Var Class"], 0], ["JDBC is?", ["DB connectivity", "UI lib", "Net lib", "Crypto"], 0], ["Servlet runs on?", ["Server", "Client", "Browser", "DB"], 0], ["JSP stands for?", ["Java Server Pages", "Java Site Pages", "Just Server Pages", "Java Source Pages"], 0], ["Spring is?", ["Framework", "Language", "DB", "OS"], 0], ["Maven is?", ["Build tool", "DB", "IDE", "Server"], 0], ["Gradle uses?", ["Groovy/Kotlin DSL", "XML", "JSON", "YAML"], 0], ["JUnit is for?", ["Testing", "Logging", "Building", "Packaging"], 0], ["Lombok provides?", ["Annotations to reduce boilerplate", "DB", "Network", "UI"], 0], ["Hashcode equals contract?", ["equal => same hash", "Different", "Random", "No relation"], 0], ["Comparable uses?", ["compareTo", "compare", "equals", "hash"], 0], ["Comparator uses?", ["compare", "compareTo", "equals", "hash"], 0], ["ConcurrentHashMap is?", ["Thread-safe", "Non-safe", "Sorted", "Singleton"], 0], ["Iterator method?", ["hasNext()", "more()", "peek()", "check()"], 0], ["Enhanced for loop?", ["for-each", "while", "do-while", "switch"], 0], ["Enum is?", ["Special class", "Method", "Variable", "Loop"], 0], ["Generics provide?", ["Type safety", "Speed", "IO", "Threading"], 0], ["? extends T means?", ["Upper bound", "Lower bound", "Exact", "Any"], 0], ["Lambda syntax?", ["() ->", "fn ->", "def ->", "=>"], 0], ["Method reference?", ["Class::method", "Class.method", "Class->method", "method@Class"], 0], ["Stream terminal op?", ["collect", "filter", "map", "peek"], 0], ["String pool stored in?", ["Heap (since 7)", "Stack", "Native", "Disk"], 0], ["intern() returns?", ["Pool reference", "New object", "Null", "Length"], 0], ["== on strings checks?", ["Reference", "Value", "Hash", "Length"], 0], [".equals() on String?", ["Value", "Reference", "Length", "Type"], 0], ["Autoboxing converts?", ["primitive\u2192wrapper", "Wrapper\u2192primitive", "String\u2192int", "int\u2192String"], 0], ["Unboxing?", ["Wrapper\u2192primitive", "Primitive\u2192wrapper", "Object\u2192String", "Long\u2192int"], 0], ["Static block runs?", ["Once at class load", "Per object", "Per call", "Never"], 0], ["Inner class types?", ["4: member, static, local, anonymous", "2", "3", "5"], 0], ["Marker interface example?", ["Serializable", "List", "Map", "Runnable"], 0], ["Java entry point signature?", ["public static void main(String[] args)", "void main()", "main(String args)", "static main()"], 0], ["Package keyword?", ["package", "import", "module", "using"], 0], ["Import keyword?", ["import", "include", "require", "using"], 0]];</script></div></section><section class="section" id="mentor"><div class="container"><div class="section-head reveal"><div class="tag">🎓 1-on-1 Mentorship</div><h2>Paid <span class="grad">Mentor Sessions</span></h2><p>Personal mentor, doubt clearing, mock interviews — accelerate your career.</p></div><div class="price-grid">
+      <div class="price-card reveal">
+        <h3>Starter</h3>
+        <div class="price">₹499<small> / hour</small></div>
+        <p style="color:var(--muted);font-size:14px">Perfect for beginners just starting Java.</p>
+        <ul>
+          <li>1 hour live 1:1 session</li>
+          <li>Doubt solving</li>
+          <li>Personal roadmap</li>
+          <li>Email follow-up</li>
+        </ul>
+        <button class="btn btn-ghost" style="width:100%">Talk to 9753528324</button>
+      </div>
+      <div class="price-card popular reveal">
+        <span class="badge">⭐ POPULAR</span>
+        <h3>Pro Career</h3>
+        <div class="price">₹3,999<small> / month</small></div>
+        <p style="color:var(--muted);font-size:14px">For students preparing for placements.</p>
+        <ul>
+          <li>4 live sessions / month</li>
+          <li>Resume + GitHub review</li>
+          <li>2 mock interviews</li>
+          <li>WhatsApp support</li>
+          <li>Project guidance</li>
+        </ul>
+        <button class="btn btn-primary" style="width:100%">Talk to 9753528324</button>
+      </div>
+      <div class="price-card reveal">
+        <h3>Interview Sprint</h3>
+        <div class="price">₹9,999<small> / 6 weeks</small></div>
+        <p style="color:var(--muted);font-size:14px">Crash course — DSA + Java + System design.</p>
+        <ul>
+          <li>12 live sessions</li>
+          <li>50+ DSA mock problems</li>
+          <li>5 mock interviews</li>
+          <li>Referral support</li>
+          <li>Lifetime community access</li>
+        </ul>
+        <button class="btn btn-ghost" style="width:100%">Talk to 9753528324</button>
+      </div>
+    </div></div></section><section class="section" id="trainers"><div class="container"><div class="section-head reveal"><div class="tag">👨‍🏫 Meet the team</div><h2>Our <span class="grad">Trainers</span></h2><p>Industry experts from top product companies.</p>
+    </div><div class="trainer-grid"><div class="trainer-card reveal"><div class="avatar">RG</div><h4>Ramgopal Prajapati (Ram sir)</h4><div class="role">About Technology.</div><p>2+ yrs · Technical Trainer and AI instructor</p></div>
+    
+  
+  
+  </div></div></section><section class="section" id="contact"><div class="container">
+      <div class="section-head reveal"><div class="tag">📩 Get in touch</div><h2>Send a <span class="grad">Message / Query</span></h2><p>We reply within 24 hours.</p></div>
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <div class="info-item"><div class="ico">📧</div><div><div style="font-size:13px;color:var(--muted)">Email</div><div>ramsirdevix@gmail.com</div></div></div>
+          <div class="info-item"><div class="ico">📞</div><div><div style="font-size:13px;color:var(--muted)">Phone</div><div>+91 9753528324</div></div></div>
+          <div class="info-item"><div class="ico">📍</div><div><div style="font-size:13px;color:var(--muted)">Address</div><div>Indore, India</div></div></div>
+          <div class="info-item"><div class="ico">⏰</div><div><div style="font-size:13px;color:var(--muted)">Hours</div><div>Mon–Sat · 10am–8pm IST</div></div></div>
+        
+    </div></section><footer class="footer"><div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <div class="logo"><div class="logo-mark">{ }</div><span>Ram Sir<span style="color:var(--primary-2)">.dev</span></span></div>
+          <p>India's most loved zero-to-hero Java + DSA course. Built by engineers, for engineers.</p>
+          <div class="social">
+            <a href="https://www.github.com/Ramgopal-prajapati" aria-label="GitHub">G</a>
+            <a href="https://www.linkedin.com/in/ramgopal-prajapati-b30237264/" aria-label="LinkedIn">in</a>
+            <a href="https://www.youtube.com/@ramsirdevix" aria-label="YouTube">▶</a>
+            <a href="https://www.instagram.com/iamramsir" aria-label="">I</a>
+          </div>
+        </div>
+        <div><h4>Course</h4><ul>
+          <li><a href="#chapters">All Chapters</a></li>
+          <li><a href="#patterns">Patterns</a></li>
+          <li><a href="#dsa">DSA Vault</a></li>
+          <li><a href="#quiz">Quiz</a></li>
+        </ul></div>
+        <div><h4>Company</h4><ul>
+          <li><a href="#trainers">Trainers</a></li>
+          <li><a href="#mentor">1:1 Mentor</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul></div>
+        <div><h4>Legal</h4><ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Use</a></li>
+          <li><a href="#">Refund Policy</a></li>
+          <li><a href="#">Cookies</a></li>
+        </ul></div>
+      </div>
+      <div class="copyr">© 2026 Ramsir.dev — Crafted with ☕ + ❤ for Java learners worldwide.</div>
+    </div></footer>
+<script>
+// copy
+function copyCode(btn){
+  const code = btn.closest('.code-card').querySelector('pre.code code').innerText;
+  navigator.clipboard.writeText(code).then(()=>{
+    const old=btn.innerText; btn.innerText='✓ Copied'; setTimeout(()=>btn.innerText=old,1200);
+  });
+}
+// reveal on scroll
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// QUIZ ENGINE
+(function(){
+  const data = window.QUIZ_DATA||[];
+  // shuffle
+  for(let i=data.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[data[i],data[j]]=[data[j],data[i]];}
+  let idx=0, score=0, locked=false;
+  const body=document.getElementById('qBody');
+  const bar =document.getElementById('qBar');
+  function render(){
+    if(idx>=data.length){
+      const pct=Math.round(score/data.length*100);
+      body.innerHTML=`<div class="q-result"><div class="big">${score} / ${data.length}</div><p style="margin:14px 0;color:var(--muted)">You scored ${pct}% — ${pct>=80?'🏆 Outstanding!':pct>=60?'👏 Solid effort!':'📚 Keep practicing!'}</p><button class="btn btn-primary" onclick="location.reload()">Retake Quiz</button></div>`;
+      bar.style.width='100%';return;
+    }
+    const [q,opts,ans]=data[idx];
+    bar.style.width=((idx)/data.length*100)+'%';
+    let html=`<div class="q-num">Question ${idx+1} / ${data.length} · Score: ${score}</div><div class="q-text">${q}</div>`;
+    opts.forEach((o,i)=>{ html+=`<button class="q-opt" data-i="${i}">${o}</button>`; });
+    html+=`<div class="q-actions"><button class="btn btn-ghost" id="skipBtn">Skip →</button></div>`;
+    body.innerHTML=html;
+    locked=false;
+    body.querySelectorAll('.q-opt').forEach(b=>b.onclick=()=>pick(parseInt(b.dataset.i),ans,b));
+    document.getElementById('skipBtn').onclick=()=>{idx++;render();};
+  }
+  function pick(i,ans,btn){
+    if(locked)return; locked=true;
+    const all=body.querySelectorAll('.q-opt');
+    all.forEach((b,j)=>{ if(j===ans)b.classList.add('correct'); if(j===i&&i!==ans)b.classList.add('wrong'); b.disabled=true;});
+    if(i===ans)score++;
+    setTimeout(()=>{idx++;render();},900);
+  }
+  render();
+})();
+
+// contact
+function sendMsg(e){
+  e.preventDefault();
+  document.getElementById('cOk').style.display='block';
+  ['cName','cEmail','cSub','cMsg'].forEach(id=>document.getElementById(id).value='');
+  setTimeout(()=>document.getElementById('cOk').style.display='none',4000);
+  return false;
+}
+</script>
+</body>
+</html>
